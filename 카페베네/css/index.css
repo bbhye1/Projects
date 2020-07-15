@@ -1,0 +1,58 @@
+header {
+    text-align: center;
+    height: 124px;
+    position: relative;
+}
+
+header>div {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin-top: 29px;
+    width: 1190px;
+    height: 64px;
+}
+
+@media() header>div a {
+    display: block;
+}
+
+header>div a.logo {
+    position: absolute;
+    width: 132px;
+    height: 64px;
+    background: url(../images/logo.png) no-repeat;
+    left: 0;
+    color: transparent;
+}
+
+header>div a.contact {
+    position: absolute;
+    width: 133px;
+    height: 33px;
+    border-radius: 15px;
+    top: 26px;
+    background: #01a5b1;
+    color: #feffff;
+    right: 0;
+    line-height: 33px;
+}
+
+header>div ul {
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 810px;
+}
+
+header>div li {
+    display: inline-block;
+}
+
+header>div li a {
+    padding: 0 33px;
+    font-size: 15px;
+    bottom: 0;
+}
