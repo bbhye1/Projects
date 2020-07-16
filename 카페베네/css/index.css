@@ -1,6 +1,4 @@
-body {
-    overflow: hidden;
-}
+body {}
 
 header {
     text-align: center;
@@ -108,4 +106,144 @@ section {
     background: url(../images/20200618181052.jpg) no-repeat;
     height: 720px;
     width: 2560px;
+}
+
+.contents {
+    position: relative;
+    width: 1190px;
+    padding: 0 365px 0 357px;
+}
+
+.contents h2 {
+    margin: 65px 0 32px;
+    color: #3a476a;
+    font-size: 22px;
+}
+
+.contents .left {
+    float: left;
+    width: 930px;
+}
+
+.contents .left .button {
+    position: relative;
+    float: left;
+    width: 930px;
+    margin-bottom: 108px;
+}
+
+.contents .left .button a {
+    display: block;
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50px);
+    width: 119px;
+    height: 31px;
+    line-height: 31px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px #3a476a solid;
+    border-radius: 15px;
+}
+
+.contents .left .container {
+    position: relative;
+    display: grid;
+    height: 1304px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.contents .left .container .item a>div {
+    position: relative;
+    width: 260px;
+    padding: 17px 0 20px;
+}
+
+.contents .left .container .item a p.con {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    height: 2.8em;
+    font-size: 14px;
+    font-weight: 400;
+    color: #232122;
+    text-indent: 2;
+    white-space: normal;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    padding-left: 19px;
+    letter-spacing: -1px;
+}
+
+.contents .left .container .item a p.cate {
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8f9092;
+}
+
+.contents .left .container .item a p.con::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: #384669;
+    left: 1px;
+    top: 50px;
+}
+
+.contents .right {
+    float: right;
+    width: 260px;
+    background-color: #c8e2df;
+}
+
+.contents .right p.tit {
+    display: block;
+    background: url(../images/m-cafe-bg.jpg) no-repeat;
+    padding: 31px 20px 81px 20px;
+    color: #01a5b1;
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 500;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.contents .right>div {
+    text-align: center;
+    padding: 0 20px 40px 20px;
+}
+
+.contents .right>div img {
+    width: 220px;
+}
+
+.contents .right>div p {
+    text-align: center;
+    font-size: 14px;
+    color: #222;
+    padding: 33px 0 23px;
+}
+
+.contents .right>div strong {
+    display: block;
+    margin-bottom: 22px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+}
+
+.contents .right>div a {
+    display: inline-block;
+    width: 117px;
+    height: 29px;
+    background: #01a5b1;
+    color: #efffff;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 29px;
 }
