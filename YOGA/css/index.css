@@ -1,0 +1,97 @@
+body {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+header {
+    height: 900px;
+    background: #fff;
+    position: relative;
+}
+
+.head-top {
+    height: 140px;
+}
+
+.head-top>a {
+    position: absolute;
+    display: block;
+    width: 92px;
+    height: 82px;
+    margin: 27px 85px;
+    background: url(../images/logo.png) no-repeat;
+    color: transparent;
+}
+
+.head-top ul {
+    float: right;
+    font-size: 0;
+    margin-right: 93px;
+    font-size: 0;
+    padding-top: 58px
+}
+
+.head-top ul li {
+    display: inline-block;
+}
+
+.head-top ul li a {
+    font-size: 16px;
+    padding: 58px 32px;
+    color: #484f5b;
+    text-align: center;
+}
+
+.head-bottom .contents {
+    margin-top: 148px;
+    right: 100px;
+}
+
+.head-bottom img {
+    position: absolute;
+    z-index: 1;
+}
+
+.head-bottom img.background {
+    position: absolute;
+    width: 1440px;
+    z-index: 2;
+}
+
+
+/* common */
+
+h3 {
+    font-size: 60px;
+    font-weight: bold;
+    color: #444c59;
+    line-height: 90px;
+    text-overflow: ellipsis;
+}
+
+.contents .join_now {
+    display: block;
+    width: 203px;
+    height: 50px;
+    background: #e6c8c3;
+    font-size: 19px;
+    font-weight: bold;
+    color: #484f5b;
+    text-align: center;
+    line-height: 50px;
+}
+
+.contents {
+    position: absolute;
+    width: 555px;
+    height: 450px;
+    z-index: 3;
+}
+
+.contents p {
+    font-size: 19px;
+    color: #484f5b;
+    text-overflow: ellipsis;
+    margin: 60px 0 76px;
+    line-height: 33px;
+}
