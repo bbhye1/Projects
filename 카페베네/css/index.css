@@ -530,3 +530,33 @@
         background: url(../images/ico-app.png);
         margin-right: 0;
     }
+    
+    .side {
+        position: fixed;
+        width: 760px;
+        left: 50%;
+        top: 0px;
+    }
+    
+    .side_banner {
+        position: absolute;
+        right: 0;
+        top: 283px;
+        display: block;
+        width: 136px;
+        height: 303px;
+        background: url(../images/20200708822048.png) no-repeat;
+        z-index: 1;
+        color: transparent;
+    }
+    
+    .ico_insta {
+        position: absolute;
+        right: 106px;
+        top: 860px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        background: url(../images/ico-insta.png) no-repeat;
+        color: transparent;
+    }
