@@ -4,7 +4,7 @@ body {
 }
 
 header {
-    height: 900px;
+    height: 894px;
     background: #fff;
     position: relative;
 }
@@ -56,6 +56,79 @@ header {
     position: absolute;
     width: 1440px;
     z-index: 2;
+}
+
+.pregn_program {
+    height: 1283px;
+}
+
+.pregn_program .pregn_top {
+    position: relative;
+    height: 806px;
+    background: url(../images/background2.jpg) no-repeat;
+}
+
+.pregn_program .pregn_top .contents {
+    top: 183px;
+    left: 93px;
+}
+
+.pregn_program .pregn_bott {
+    position: relative;
+    height: 477px;
+}
+
+.pregn_program .pregn_bott ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 112px;
+}
+
+.pregn_program .pregn_bott ul li {
+    padding: 0 66px;
+}
+
+.pregn_program .pregn_bott ul li a {
+    display: block;
+    width: 270px;
+    height: 478px;
+}
+
+.pregn_program .pregn_bott h4 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #484f5b;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pregn_program .pregn_bott p {
+    font-size: 21px;
+    color: #484f5b;
+    font-weight: 300;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.pregn_program .pregn_bott li .icon {
+    margin: 81px auto 0 auto;
+    width: 280px;
+    height: 220px;
+}
+
+.pregn_program .pregn_bott li:nth-child(1) .icon {
+    background: url(../images/Icon3.png) no-repeat;
+    background-position: 0 56px;
+}
+
+.pregn_program .pregn_bott li:nth-child(2) .icon {
+    background: url(../images/Icon2.png) no-repeat;
+    background-position: 11px 33px;
+}
+
+.pregn_program .pregn_bott li:nth-child(3) .icon {
+    background: url(../images/Icon1.png) no-repeat;
+    background-position: 15px 0;
 }
 
 
