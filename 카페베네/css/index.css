@@ -1,8 +1,13 @@
+    body {
+        overflow-x: hidden;
+    }
+    
     header {
         text-align: center;
         height: 124px;
         width: 100%;
-        /* position: fixed; */
+        background: #fff;
+        z-index: 9;
     }
     
     header>div {
@@ -104,7 +109,7 @@
     
     .contents {
         position: relative;
-        height: 1550px;
+        height: 1607px;
         padding: 0 365px 0 357px;
     }
     
@@ -153,6 +158,10 @@
         display: grid;
         height: 1304px;
         grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .contents .left .container .column .item {
+        margin-bottom: 44px;
     }
     
     .contents .left .container .item a>div {
@@ -541,7 +550,7 @@
     .side_banner {
         position: absolute;
         right: 0;
-        top: 283px;
+        top: 160px;
         display: block;
         width: 136px;
         height: 303px;
