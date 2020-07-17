@@ -131,10 +131,60 @@ header {
     background-position: 15px 0;
 }
 
+.learn_breathing {
+    position: relative;
+    height: 633px;
+    background: url(../images/Design2.jpg) no-repeat;
+}
+
+.learn_breathing .img_breathing {
+    position: absolute;
+    top: 81px;
+    left: 687px;
+}
+
+.learn_breathing .contents {
+    top: 120px;
+    left: 87px;
+}
+
+.learn_breathing .contents p {
+    margin: 33px 0 47px;
+}
+
+.learn_breathing .contents h2 {
+    line-height: 70px;
+}
+
+.get_discount {
+    position: relative;
+    background: url(../images/yoga_img2.png) no-repeat;
+    height: 608px;
+}
+
+.get_discount>img {
+    position: absolute;
+    top: 107px;
+    left: 741px;
+}
+
+.get_discount .contents {
+    top: 115px;
+    left: 785px;
+}
+
+.get_discount .contents h2 {
+    line-height: 72px;
+}
+
+.get_discount .contents p {
+    margin: 37px 0 39px;
+}
+
 
 /* common */
 
-h3 {
+h2 {
     font-size: 60px;
     font-weight: bold;
     color: #444c59;
