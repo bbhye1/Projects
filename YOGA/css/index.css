@@ -371,6 +371,116 @@
     textarea::placeholder {
         color: #b5b5b5;
     }
+    
+    footer {
+        height: 325px;
+        background: #484f5b;
+        color: #fff;
+    }
+    
+    footer a {
+        color: #fff;
+    }
+    
+    footer .foot_wrap {
+        position: relative;
+        width: 1110px;
+        margin: 0 auto;
+    }
+    
+    footer .info {
+        position: absolute;
+        width: 187px;
+        top: 69px;
+        left: 0;
+        font-size: 17px;
+        font-weight: 200;
+    }
+    
+    footer .info h3 {
+        font-size: 26px;
+    }
+    
+    footer .info address {
+        line-height: 29px;
+        margin-top: 29px;
+        font-weight: 200;
+        width: 150px;
+        white-space: normal;
+        word-break: keep-all;
+    }
+    
+    footer .info p {
+        margin-top: 38px;
+        line-height: 17px;
+    }
+    
+    footer .foot_ul {
+        position: absolute;
+        top: 68px;
+        left: 280px;
+        width: 550px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    footer .foot_ul ul {
+        display: inline-block;
+        margin-right: 88px;
+    }
+    
+    footer .foot_ul ul a {
+        line-height: 29px;
+        font-weight: 200;
+    }
+    
+    footer .foot_sns_link {
+        position: absolute;
+        width: 274px;
+        top: 57px;
+        right: 0;
+    }
+    
+    footer .foot_sns_link>a {
+        display: block;
+        width: 95px;
+        height: 67px;
+        background: url(../images/footer_logo.png) no-repeat;
+        font-size: 0;
+    }
+    
+    footer .foot_sns_link p {
+        margin: 29px 14px;
+        font-size: 17px;
+        font-weight: 200;
+        line-height: 26px;
+        white-space: normal;
+        word-break: keep-all;
+    }
+    
+    footer .foot_sns_link div {
+        margin: 26px 14px;
+        font-size: 0;
+    }
+    
+    footer .foot_sns_link div a {
+        display: inline-block;
+        width: 22px;
+        height: 23px;
+        margin-right: 25px;
+    }
+    
+    footer .foot_sns_link div a:nth-child(1) {
+        background: url(../images/Facebook_w.png);
+    }
+    
+    footer .foot_sns_link div a:nth-child(2) {
+        background: url(../images/Instagram_w.png);
+    }
+    
+    footer .foot_sns_link div a:nth-child(3) {
+        background: url(../images/Twitter_w.png);
+    }
     /* common */
     
     h2 {
