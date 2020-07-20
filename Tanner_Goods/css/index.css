@@ -1,193 +1,402 @@
-body {
-    width: 1440px;
-    margin: 0 auto;
-    font-family: 'Montserrat', sans-serif;
-}
-
-header {
-    position: relative;
-    height: 542px;
-    background: url(../images/home-slider-slide-3.png) 500px 0 no-repeat;
-    background-size: contain;
-}
-
-header .head_top {
-    height: 115px;
-}
-
-header .head_top .logo {
-    display: block;
-    position: absolute;
-    left: 8px;
-    width: 167px;
-    height: 115px;
-    background: url(../images/tanner_logo_top.png);
-    color: transparent;
-}
-
-header .head_top nav {
-    margin-left: 282px;
-    vertical-align: center;
-}
-
-header .head_top nav ul {
-    padding-top: 20px;
-}
-
-header .head_top nav li {
-    float: left;
-    margin-right: 76px;
-}
-
-header .head_top nav li:nth-child(3) a,
-header .head_top nav li:nth-child(4) a,
-header .head_top nav li:nth-child(5) a {
-    color: #fff;
-}
-
-header .head_top nav li.on a::before {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 1.5px;
-    background: #c6b698;
-    position: absolute;
-    left: -41px;
-    top: 27px;
-}
-
-header .head_top nav li.on a::after {
-    content: "";
-    display: block;
-    width: 4px;
-    height: 4px;
-    background: #c6b698;
-    border-radius: 2px;
-    position: absolute;
-    right: -8px;
-    top: 27px;
-}
-
-header .head_top nav li a {
-    display: block;
-    position: relative;
-    height: 57px;
-    line-height: 57px;
-    font-size: 11px;
-    letter-spacing: -0.5px;
-    font-weight: 900;
-}
-
-header .left_bar {
-    vertical-align: center;
-    text-align: center;
-    font-size: 14px;
-    width: 59px;
-    margin: 19px 58px;
-}
-
-header .left_bar>a {
-    display: block;
-    width: 19px;
-    height: 37px;
-    font-size: 0;
-    margin-left: 20px;
-}
-
-header .left_bar a.bar_pre {
-    background: url(../images/Forma1.png) 0 13px no-repeat;
-}
-
-header .left_bar a.bar_pre:hover {
-    background: url(../images/Forma2-1.png) 0 13px no-repeat;
-}
-
-header .left_bar a.bar_next {
-    background: url(../images/Forma1-1.png) 0 13px no-repeat;
-}
-
-header .left_bar a.bar_next:hover {
-    background: url(../images/Forma2.png) 0 13px no-repeat;
-}
-
-header .left_bar ul li a {
-    position: relative;
-    display: block;
-    height: 27px;
-    line-height: 27px;
-    color: #878787;
-}
-
-header .left_bar ul li.on a {
-    display: block;
-    width: 59px;
-    height: 59px;
-    border-radius: 29px;
-    background: #fff;
-    box-shadow: 0 0 20px #dddfe1;
-    font-size: 30px;
-    color: #000;
-    line-height: 59px;
-    margin: 11px 0;
-}
-
-header .left_bar ul {
-    padding-top: 53px;
-}
-
-header .left_bar ul li:first-child a::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 1.5px;
-    height: 29px;
-    top: -65px;
-    left: 29px;
-    background: #eae4d9;
-}
-
-header .head_bott {
-    position: absolute;
-    top: 242px;
-    left: 255px;
-    width: 576px;
-}
-
-header .head_bott p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: #383838;
-    margin-bottom: 21px;
-}
-
-header .head_bott h2 {
-    font-size: 34px;
-    font-weight: 800;
-    color: #292929;
-    letter-spacing: 10px;
-    line-height: 31px;
-    margin-bottom: 54px;
-}
-
-header .head_bott a {
-    display: block;
-    position: relative;
-    font-family: 'Roboto', sans-serif;
-    margin-left: 117px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 18px;
-    color: #b8a47e;
-}
-
-header .head_bott a::before {
-    content: "";
-    display: block;
-    position: absolute;
-    background: #b8a47e;
-    width: 30px;
-    height: 1.3px;
-    top: 10px;
-    left: -42px;
-}
+        body {
+            width: 1440px;
+            margin: 0 auto;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        header {
+            position: relative;
+            height: 542px;
+            background: url(../images/home-slider-slide-3.jpg) 500px 0 no-repeat;
+            background-size: contain;
+        }
+        
+        header .head_top {
+            height: 115px;
+        }
+        
+        header .head_top .logo {
+            display: block;
+            position: absolute;
+            left: 8px;
+            width: 167px;
+            height: 115px;
+            background: url(../images/tanner_logo_top.png);
+            color: transparent;
+        }
+        
+        header .head_top nav {
+            margin-left: 282px;
+            vertical-align: center;
+        }
+        
+        header .head_top nav ul {
+            padding-top: 20px;
+        }
+        
+        header .head_top nav li {
+            float: left;
+            margin-right: 76px;
+        }
+        
+        header .head_top nav li:nth-child(3) a,
+        header .head_top nav li:nth-child(4) a,
+        header .head_top nav li:nth-child(5) a {
+            color: #fff;
+        }
+        
+        header .head_top nav li.on a::before {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 1.5px;
+            background: #c6b698;
+            position: absolute;
+            left: -41px;
+            top: 27px;
+        }
+        
+        header .head_top nav li.on a::after {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 4px;
+            background: #c6b698;
+            border-radius: 2px;
+            position: absolute;
+            right: -8px;
+            top: 27px;
+        }
+        
+        header .head_top nav li a {
+            display: block;
+            position: relative;
+            height: 57px;
+            line-height: 57px;
+            font-size: 11px;
+            letter-spacing: -0.5px;
+            font-weight: 900;
+        }
+        
+        header .left_bar {
+            vertical-align: center;
+            text-align: center;
+            font-size: 14px;
+            width: 59px;
+            margin: 19px 58px;
+        }
+        
+        header .left_bar>a {
+            display: block;
+            width: 19px;
+            height: 37px;
+            font-size: 0;
+            margin-left: 20px;
+        }
+        
+        header .left_bar a.bar_pre {
+            background: url(../images/Forma1.png) 0 13px no-repeat;
+        }
+        
+        header .left_bar a.bar_pre:hover {
+            background: url(../images/Forma2-1.png) 0 13px no-repeat;
+        }
+        
+        header .left_bar a.bar_next {
+            background: url(../images/Forma1-1.png) 0 13px no-repeat;
+        }
+        
+        header .left_bar a.bar_next:hover {
+            background: url(../images/Forma2.png) 0 13px no-repeat;
+        }
+        
+        header .left_bar ul li a {
+            position: relative;
+            display: block;
+            height: 27px;
+            line-height: 27px;
+            color: #878787;
+        }
+        
+        header .left_bar ul li.on a {
+            display: block;
+            width: 59px;
+            height: 59px;
+            border-radius: 29px;
+            background: #fff;
+            box-shadow: 0 0 20px #dddfe1;
+            font-size: 30px;
+            color: #000;
+            line-height: 59px;
+            margin: 11px 0;
+        }
+        
+        header .left_bar ul {
+            padding-top: 53px;
+        }
+        
+        header .left_bar ul li:first-child a::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 1.5px;
+            height: 29px;
+            top: -65px;
+            left: 29px;
+            background: #eae4d9;
+        }
+        
+        header .head_bott {
+            position: absolute;
+            top: 242px;
+            left: 255px;
+            width: 576px;
+        }
+        
+        header .head_bott p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #383838;
+            margin-bottom: 21px;
+        }
+        
+        header .head_bott h2 {
+            font-size: 34px;
+            font-weight: 800;
+            color: #292929;
+            letter-spacing: 10px;
+            line-height: 31px;
+            margin-bottom: 54px;
+        }
+        
+        header .head_bott a {
+            display: block;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+            margin-left: 117px;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 18px;
+            color: #b8a47e;
+        }
+        
+        header .head_bott a::before {
+            content: "";
+            display: block;
+            position: absolute;
+            background: #b8a47e;
+            width: 30px;
+            height: 1.3px;
+            top: 10px;
+            left: -42px;
+        }
+        
+        .voyoager_daypack {
+            height: 1164px;
+        }
+        
+        .voyoager_daypack .voy_top {
+            position: relative;
+            margin-top: 96px;
+            padding-top: 81px;
+            height: 435px;
+            background: url(../images/img_2.jpg) no-repeat;
+        }
+        
+        .voyoager_daypack .voy_top .p_line {
+            display: block;
+            border: 2.5px #c1b08f solid;
+            width: 673px;
+            height: 242px;
+            margin-left: 648px;
+            padding: 39px 86px 0 351px;
+            text-overflow: ellipsis;
+            word-break: keep-all;
+            box-sizing: border-box;
+            font-size: 12px;
+            font-weight: 400;
+            font-family: 'Roboto', sans-serif;
+            color: #a7a7a7;
+            line-height: 30px;
+        }
+        
+        .voyoager_daypack .voy_top .top_txt {
+            position: absolute;
+            top: 166px;
+            left: 419px;
+            color: #fff;
+        }
+        
+        .voyoager_daypack .voy_top .top_txt h2 {
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: 11px;
+            line-height: 34px;
+            margin-bottom: 18px;
+        }
+        
+        .voyoager_daypack .voy_top .top_txt p {
+            font-size: 16px;
+            font-weight: 500;
+            margin-left: 365px;
+        }
+        
+        .voyoager_daypack .voy_top .top_txt p.top_txt_ico {
+            display: block;
+            width: 149px;
+            height: 59px;
+            text-align: center;
+            background: #fff;
+            margin-left: 638px;
+            margin-top: 80px;
+        }
+        
+        .voyoager_daypack .voy_bott {
+            position: relative;
+            margin-top: 103px;
+            font-size: 0;
+        }
+        
+        .voyoager_daypack .voy_bott_wrap {
+            width: 1440px;
+            height: 329px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .voyoager_daypack .voy_bott_wrap a {
+            display: inline-block;
+            width: 324px;
+            height: 205px;
+            margin-left: 29px;
+        }
+        
+        .voyoager_daypack .voy_bott_wrap a img {
+            display: block;
+            width: 324px;
+            height: 205px;
+        }
+        
+        .voyoager_daypack .voy_bott_wrap a.on {
+            width: 440px;
+            height: 329px;
+        }
+        
+        .voyoager_daypack .voy_bott_wrap a.on img {
+            width: 440px;
+            height: 329px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix {
+            position: absolute;
+            width: 560px;
+            top: 24px;
+            left: 617px;
+            text-align: center;
+        }
+        
+        .voyoager_daypack .voy_bott_fix .buy {
+            display: block;
+            position: absolute;
+            padding: 109px 126px 0 0;
+            left: 0;
+            display: block;
+            width: 462px;
+            height: 172px;
+            border: 2.5px #767573 solid;
+            font-size: 19px;
+            font-weight: 700;
+            color: #878787;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix span {
+            display: block;
+            top: 31px;
+            left: 28px;
+            position: absolute;
+            color: #000;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 12px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix img {
+            position: absolute;
+            top: 110px;
+            left: 203px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul>a {
+            position: absolute;
+            display: block;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul>a.pre {
+            background: url(../images/ico_pre.png) no-repeat;
+            font-size: 0;
+            top: 27px;
+            left: 132px;
+            height: 25px;
+            width: 11px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul>a.next {
+            background: url(../images/ico_next.png) no-repeat;
+            font-size: 0;
+            top: 27px;
+            left: 270px;
+            height: 25px;
+            width: 11px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul {
+            display: block;
+            position: absolute;
+            top: 315px;
+            left: 130px;
+            width: 440px;
+            height: 70px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul li {
+            display: inline-block;
+            margin-right: 26px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul a {
+            width: 39px;
+            height: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #878787;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul li.on {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 35px;
+            box-shadow: 0 0 15px #dddfe1;
+            margin: 0 72px 0 46px;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul li.on a {
+            font-size: 27px;
+            color: #000;
+        }
+        
+        .voyoager_daypack .voy_bott_fix ul li.on:before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 1px;
+            height: 12px;
+            background: #c4c4c4;
+            top: -12px;
+            left: 202px;
+        }
