@@ -1,0 +1,193 @@
+body {
+    width: 1440px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    position: relative;
+    height: 542px;
+    background: url(../images/home-slider-slide-3.png) 500px 0 no-repeat;
+    background-size: contain;
+}
+
+header .head_top {
+    height: 115px;
+}
+
+header .head_top .logo {
+    display: block;
+    position: absolute;
+    left: 8px;
+    width: 167px;
+    height: 115px;
+    background: url(../images/tanner_logo_top.png);
+    color: transparent;
+}
+
+header .head_top nav {
+    margin-left: 282px;
+    vertical-align: center;
+}
+
+header .head_top nav ul {
+    padding-top: 20px;
+}
+
+header .head_top nav li {
+    float: left;
+    margin-right: 76px;
+}
+
+header .head_top nav li:nth-child(3) a,
+header .head_top nav li:nth-child(4) a,
+header .head_top nav li:nth-child(5) a {
+    color: #fff;
+}
+
+header .head_top nav li.on a::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 1.5px;
+    background: #c6b698;
+    position: absolute;
+    left: -41px;
+    top: 27px;
+}
+
+header .head_top nav li.on a::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: #c6b698;
+    border-radius: 2px;
+    position: absolute;
+    right: -8px;
+    top: 27px;
+}
+
+header .head_top nav li a {
+    display: block;
+    position: relative;
+    height: 57px;
+    line-height: 57px;
+    font-size: 11px;
+    letter-spacing: -0.5px;
+    font-weight: 900;
+}
+
+header .left_bar {
+    vertical-align: center;
+    text-align: center;
+    font-size: 14px;
+    width: 59px;
+    margin: 19px 58px;
+}
+
+header .left_bar>a {
+    display: block;
+    width: 19px;
+    height: 37px;
+    font-size: 0;
+    margin-left: 20px;
+}
+
+header .left_bar a.bar_pre {
+    background: url(../images/Forma1.png) 0 13px no-repeat;
+}
+
+header .left_bar a.bar_pre:hover {
+    background: url(../images/Forma2-1.png) 0 13px no-repeat;
+}
+
+header .left_bar a.bar_next {
+    background: url(../images/Forma1-1.png) 0 13px no-repeat;
+}
+
+header .left_bar a.bar_next:hover {
+    background: url(../images/Forma2.png) 0 13px no-repeat;
+}
+
+header .left_bar ul li a {
+    position: relative;
+    display: block;
+    height: 27px;
+    line-height: 27px;
+    color: #878787;
+}
+
+header .left_bar ul li.on a {
+    display: block;
+    width: 59px;
+    height: 59px;
+    border-radius: 29px;
+    background: #fff;
+    box-shadow: 0 0 20px #dddfe1;
+    font-size: 30px;
+    color: #000;
+    line-height: 59px;
+    margin: 11px 0;
+}
+
+header .left_bar ul {
+    padding-top: 53px;
+}
+
+header .left_bar ul li:first-child a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1.5px;
+    height: 29px;
+    top: -65px;
+    left: 29px;
+    background: #eae4d9;
+}
+
+header .head_bott {
+    position: absolute;
+    top: 242px;
+    left: 255px;
+    width: 576px;
+}
+
+header .head_bott p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #383838;
+    margin-bottom: 21px;
+}
+
+header .head_bott h2 {
+    font-size: 34px;
+    font-weight: 800;
+    color: #292929;
+    letter-spacing: 10px;
+    line-height: 31px;
+    margin-bottom: 54px;
+}
+
+header .head_bott a {
+    display: block;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 117px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #b8a47e;
+}
+
+header .head_bott a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #b8a47e;
+    width: 30px;
+    height: 1.3px;
+    top: 10px;
+    left: -42px;
+}
