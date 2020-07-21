@@ -400,3 +400,247 @@
             top: -12px;
             left: 202px;
         }
+        
+        .drifter_dopp_kit {
+            height: 1214px;
+            background: #ededed;
+            padding-top: 138px;
+            box-sizing: border-box;
+        }
+        
+        .drifter_dopp_kit .top {
+            background: url(../images/img_3.jpg) 470px 0 no-repeat;
+        }
+        
+        .drifter_dopp_kit .top .p_line {
+            margin-left: 118px;
+            padding: 34px 350px 48px 50px;
+            letter-spacing: -0.3px;
+        }
+        
+        .drifter_dopp_kit .top .top_txt h2 {
+            letter-spacing: 9.5px;
+        }
+        
+        .drifter_dopp_kit .top .top_txt {
+            top: 166px;
+            left: 532px;
+        }
+        
+        .drifter_dopp_kit .top .top_txt p {
+            font-size: 14px;
+            margin-left: 86px;
+        }
+        
+        .drifter_dopp_kit .top_txt p.top_txt_ico {
+            position: absolute;
+            background: #ededed;
+            left: -389px;
+        }
+        
+        .drifter_dopp_kit .bott {
+            margin-top: 144px;
+        }
+        
+        .drifter_dopp_kit .bott_fix {
+            top: 24px;
+            left: 617px;
+        }
+        
+        .drifter_dopp_kit .bott_fix ul {
+            top: 332px;
+        }
+        
+        .drifter_dopp_kit .bott_fix ul li.on:before {
+            width: 1px;
+            height: 28px;
+            top: -28px;
+        }
+        /* PROUDUCT COMMON */
+        
+        .top {
+            position: relative;
+            height: 435px;
+        }
+        
+        .top .p_line {
+            display: block;
+            border: 2.5px #c1b08f solid;
+            width: 673px;
+            height: 242px;
+            text-overflow: ellipsis;
+            word-break: keep-all;
+            box-sizing: border-box;
+            font-size: 12px;
+            font-weight: 400;
+            font-family: 'Roboto', sans-serif;
+            color: #a7a7a7;
+            line-height: 30px;
+        }
+        
+        .top .top_txt {
+            position: absolute;
+            color: #fff;
+        }
+        
+        .top_txt h2 {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 34px;
+            margin-bottom: 18px;
+        }
+        
+        .top_txt p {
+            font-weight: 500;
+        }
+        
+        .top_txt p.top_txt_ico {
+            display: block;
+            width: 149px;
+            height: 59px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .bott {
+            position: relative;
+            /* margin-top: 103px; */
+            font-size: 0;
+        }
+        
+        .bott_wrap {
+            width: 1440px;
+            height: 329px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .bott_wrap a {
+            display: inline-block;
+            width: 324px;
+            height: 205px;
+            margin-left: 29px;
+        }
+        
+        .bott_wrap a img {
+            display: block;
+            width: 324px;
+            height: 205px;
+        }
+        
+        .bott_wrap a.on {
+            width: 440px;
+            height: 329px;
+        }
+        
+        .bott_wrap a.on img {
+            width: 440px;
+            height: 329px;
+        }
+        
+        .bott_fix {
+            position: absolute;
+            width: 560px;
+            text-align: center;
+        }
+        
+        .bott_fix .buy {
+            display: block;
+            position: absolute;
+            padding: 109px 126px 0 0;
+            left: 0;
+            display: block;
+            width: 462px;
+            height: 172px;
+            border: 2.5px #767573 solid;
+            font-size: 19px;
+            font-weight: 700;
+            color: #878787;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        .bott_fix span {
+            display: block;
+            top: 31px;
+            left: 28px;
+            position: absolute;
+            color: #000;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 12px;
+        }
+        
+        .bott_fix img {
+            position: absolute;
+            top: 110px;
+            left: 203px;
+        }
+        
+        .bott_fix ul>a {
+            position: absolute;
+            display: block;
+        }
+        
+        .bott_fix ul>a.pre {
+            background: url(../images/ico_pre.png) no-repeat;
+            font-size: 0;
+            top: 27px;
+            left: 132px;
+            height: 25px;
+            width: 11px;
+        }
+        
+        .bott_fix ul>a.next {
+            background: url(../images/ico_next.png) no-repeat;
+            font-size: 0;
+            top: 27px;
+            left: 270px;
+            height: 25px;
+            width: 11px;
+        }
+        
+        .bott_fix ul {
+            display: block;
+            position: absolute;
+            left: 130px;
+            width: 440px;
+            height: 70px;
+        }
+        
+        .bott_fix ul li {
+            display: inline-block;
+            margin-right: 26px;
+        }
+        
+        .bott_fix ul a {
+            width: 39px;
+            height: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #878787;
+        }
+        
+        .bott_fix ul li.on {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 35px;
+            box-shadow: 0 0 15px #d1d3d4;
+            margin: 0 72px 0 46px;
+            background: #fff;
+        }
+        
+        .bott_fix ul li.on a {
+            font-size: 27px;
+            color: #000;
+        }
+        
+        .bott_fix ul li.on:before {
+            content: "";
+            display: block;
+            position: absolute;
+            background: #c4c4c4;
+            left: 202px;
+        }
