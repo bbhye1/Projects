@@ -567,5 +567,5 @@
         width: 30px;
         height: 30px;
         background: url(../images/ico-insta.png) no-repeat;
-        color: transparent;
+        font-size: 0;
     }
