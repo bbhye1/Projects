@@ -258,6 +258,8 @@
         
         .drifter_dopp_kit .top {
             background: url(../images/img_3.jpg) 470px 0 no-repeat;
+            box-sizing: border-box;
+            padding-top: 90px;
         }
         
         .drifter_dopp_kit .top .p_line {
@@ -284,6 +286,7 @@
             position: absolute;
             background: #ededed;
             left: -389px;
+            margin-top: 80px;
         }
         
         .drifter_dopp_kit .bott {
@@ -304,7 +307,313 @@
             height: 28px;
             top: -28px;
         }
-        /* PROUDUCT COMMON */
+        
+        .tanner_collections {
+            position: relative;
+            height: 1850px;
+        }
+        
+        .tanner_collections .col_top {
+            height: 261px;
+            padding: 123px 0 0 298px;
+        }
+        
+        .tanner_collections .col_top h2 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #383838;
+            letter-spacing: 14px;
+        }
+        
+        .tanner_collections .col_top p {
+            display: block;
+            position: relative;
+            width: 417px;
+            height: 23px;
+            background: #e1d9c9;
+            color: 6e6555;
+            padding-left: 5px;
+            line-height: 23px;
+            margin: 31px 0 0 578px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .tanner_collections .col_top p::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 105px;
+            height: 1.5px;
+            background: #222222;
+            top: 11px;
+            left: -113px;
+        }
+        
+        .tanner_collections .col_mid {
+            position: relative;
+            width: 1059px;
+            height: 1292px;
+            margin-left: 118px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce {
+            position: absolute;
+            z-index: 2;
+            width: 706px;
+            height: 1060px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>p {
+            margin-top: 33px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>p:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 105px;
+            height: 1.5px;
+            background: #222222;
+            top: 23px;
+            left: 73px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>div {
+            width: 406px;
+            margin: 55px 0 0 119px;
+            text-align: center;
+        }
+        
+        .tanner_collections .col_mid li>div>div {
+            display: block;
+            position: absolute;
+            width: 406px;
+            height: 22.5px;
+            background: #e1d9c9;
+            color: transparent;
+            top: 8px;
+            z-index: 1;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>div h3::before {
+            width: 1.3px;
+            height: 105px;
+            top: -118px;
+            left: 34px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>div p {
+            margin: 21px 0 21px 147px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>div a {
+            margin-left: 147px;
+            margin-bottom: 67px;
+        }
+        
+        .tanner_collections .col_mid .card_spruce>div a img {
+            display: inline;
+            margin: 4px;
+        }
+        
+        .tanner_collections .col_mid .img_spruce_1 {
+            margin-top: -22px;
+        }
+        
+        .tanner_collections .col_mid .img_spruce_2 {
+            margin-top: -18px;
+            margin-left: 119px;
+        }
+        
+        .tanner_collections .col_mid .card_nomad {
+            position: absolute;
+            top: 129px;
+            left: 538px;
+            width: 522px;
+            height: 649px;
+            z-index: 3;
+            box-sizing: border-box;
+        }
+        
+        .tanner_collections .col_mid .card_nomad>div {
+            position: relative;
+            width: 283px;
+            margin: 70px 0 123px 220px;
+        }
+        
+        .tanner_collections .col_mid .card_nomad>div p {
+            margin: 17px 0 21px;
+        }
+        
+        .tanner_collections .col_mid .card_nomad>div a img {
+            display: inline;
+            margin: 4px;
+        }
+        
+        .tanner_collections .col_mid .card_nomad>div::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 1.5px;
+            height: 52px;
+            background: #222222;
+            top: -70px;
+            left: 1px;
+        }
+        
+        .tanner_collections .col_mid .card_nomad>div::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 1.5px;
+            height: 106px;
+            background: #222222;
+            top: 156px;
+            left: 10px;
+        }
+        
+        .tanner_collections .col_mid .card_nomad>img {
+            display: block;
+            margin-left: 74px;
+        }
+        
+        .tanner_collections .col_mid .card_field {
+            position: absolute;
+            z-index: 1;
+            width: 554px;
+            height: 517px;
+            top: 777px;
+            left: 516px;
+        }
+        
+        .tanner_collections .col_mid .card_field>div {
+            width: 353px;
+            margin: 21px 0 0 189px;
+        }
+        
+        .tanner_collections .col_mid .card_field>div p {
+            margin: 17px 0 21px;
+        }
+        
+        .tanner_collections .col_mid .card_field>div a img {
+            display: inline;
+            margin: 4px;
+        }
+        
+        .tanner_collections .col_mid .card_field>img {
+            display: block;
+            margin-top: -24px;
+        }
+        
+        .tanner_collections .col_mid .card_field>p {
+            margin: 10px 0 0 476px;
+        }
+        
+        .tanner_collections .w_txt {
+            position: absolute;
+            z-index: 4;
+            display: block;
+            width: 370px;
+            height: 105px;
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: 19px;
+            color: #fff;
+            text-shadow: 0 10px 10px #a3a5a7;
+            top: 1118px;
+            left: 200px;
+        }
+        
+        .tanner_collections .col_bott {
+            width: 1101px;
+            height: 172px;
+            box-sizing: border-box;
+            padding-top: 47px;
+            padding-left: 55px;
+        }
+        
+        .tanner_collections .col_bott ul {
+            display: flex;
+            flex-flow: row wrap-reverse;
+            width: 1100px;
+            height: 124px;
+            justify-content: space-between;
+        }
+        
+        .tanner_collections .col_bott ul li {
+            width: 125px;
+            height: 124px;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(1) {
+            background: url(../images/sm_bott_img1.jpg) no-repeat;
+            background-size: contain;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(2) {
+            background: url(../images/sm_bott_img2.jpg) no-repeat;
+            background-size: contain;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(3) {
+            background: url(../images/sm_bott_img3.jpg) no-repeat;
+            background-size: contain;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(4) {
+            background: url(../images/sm_bott_img4.jpg) no-repeat;
+            background-size: contain;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(5) {
+            background: url(../images/sm_bott_img5.jpg) no-repeat;
+            background-size: contain;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(6) {
+            background: url(../images/sm_bott_img6.jpg) no-repeat;
+            background-size: contain;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(7) {
+            position: relative;
+            display: block;
+            width: 163px;
+            height: 430px;
+            background: #e3dccd;
+        }
+        
+        .tanner_collections .col_bott ul li:nth-child(7) p {
+            position: absolute;
+            font-size: 35px;
+            font-weight: 700;
+            letter-spacing: 16px;
+            width: 100px;
+            color: #868178;
+            left: 62px;
+            bottom: 63px;
+        }
+        
+        .tanner_collections .col_bott ul li a {
+            color: transparent;
+        }
+        
+        .tanner_collections .col_bott ul li:hover a {
+            display: block;
+            width: 125px;
+            height: 124px;
+            background: url(../images/ico_plus.png) 45px 46px no-repeat rgba(0, 0, 0, 0.5);
+        }
+        /* 
+        
+        
+        
+        
+        
+        
+        
+        PROUDUCT COMMON */
         
         .top {
             position: relative;
@@ -351,7 +660,6 @@
         
         .bott {
             position: relative;
-            /* margin-top: 103px; */
             font-size: 0;
         }
         
@@ -490,4 +798,56 @@
             position: absolute;
             background: #c4c4c4;
             left: 202px;
+        }
+        /* tanner_collections  */
+        
+        .col_mid li>div {
+            position: relative;
+        }
+        
+        .col_mid li>div h3 {
+            position: relative;
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 800;
+            color: #383838;
+            letter-spacing: 6px;
+            z-index: 2;
+        }
+        
+        .col_mid li>div h3::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 1.3px;
+            background: #000;
+        }
+        
+        .col_mid li>div p {
+            font-size: 12px;
+            font-weight: 100;
+            font-family: 'Roboto', sans-serif;
+            line-height: 17px;
+            white-space: normal;
+            word-break: keep-all;
+            text-align: initial;
+        }
+        
+        .col_mid li>div a {
+            display: block;
+            width: 95px;
+            height: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 12px;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .col_mid li>p {
+            position: relative;
+            line-height: 38px;
+            font-size: 38px;
+            font-weight: 800;
+            color: #969696;
+            letter-spacing: 14px;
         }
