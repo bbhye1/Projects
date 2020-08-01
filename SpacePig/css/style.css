@@ -1,0 +1,100 @@
+body {
+    height: 500vw;
+    background: #000;
+    -webkit-overflow-scrolling: touch;
+    color: #fff;
+}
+
+.space {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px;
+}
+
+.stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+.house {
+    width: 100vw;
+    height: 100vh;
+    transform: translateZ(-490vw);
+    transform-style: preserve-3d;
+}
+
+.wall {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+.wall-side-left {
+    width: 1000vw;
+    transform: rotateY(90deg) translateZ(-500vw);
+    background: url(../images/space_side_img.jpg);
+}
+
+.wall-side-right {
+    width: 1000vw;
+    transform: rotateY(90deg) translateZ(-400vw);
+    background: url(../images/space_side_img.jpg);
+}
+
+.wall-side-top {
+    height: 1000vw;
+    transform: rotateX(90deg) translateZ(500vw);
+    background: url(../images/space_side_img.jpg);
+}
+
+.wall-side-bottom {
+    height: 1000vw;
+    transform: rotateX(90deg) translateZ(calc(453vw));
+    background: url(../images/space_side_img.jpg);
+}
+
+.wall-front {
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.wall-front-a {
+    background-image: url(../images/space_obj_1.png);
+    transform: translateZ(440vw);
+}
+
+.wall-front-b {
+    background-image: url(../images/space_obj_2.png);
+    transform: translateZ(250vw);
+}
+
+.wall-front-c {
+    background-image: url(../images/space_obj_3.png);
+    transform: translateZ(20vw);
+}
+
+.wall-front-d {
+    background-image: url(../images/space_obj_4.png);
+    transform: translateZ(-200vw);
+}
+
+.wall-front-e {
+    background-image: url(../images/space_obj_5.png);
+    transform: translateZ(-400vw);
+}
+
+.wall-back {
+    width: 120vw;
+    height: 120vh;
+    background-image: url(../images/space_side_img.jpg);
+    background-size: cover;
+    transform: translateZ(-520vw);
+}
