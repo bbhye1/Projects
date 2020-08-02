@@ -121,3 +121,106 @@ body {
     background-color: purple;
     position: absolute;
 }
+
+
+/* character */
+
+.character {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    width: 10.7vw;
+    height: 12.8vw;
+    transform-style: preserve-3d;
+}
+
+.character-face {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    transform-style: preserve-3d;
+}
+
+.pig-body {
+    left: calc(241 / 1076 * 100%);
+    top: 0;
+    z-index: 60;
+    width: calc(600 / 1076 * 100%);
+    height: calc(1114 / 1280 * 100%);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pig-body-front {
+    background-image: url(../images/pig-body-front.png);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.pig-body-back {
+    background-image: url(../images/pig-body-back.png);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.pig-arm-left {
+    left: 0;
+    top: calc(583 / 1280 * 100%);
+    z-index: 60;
+    width: calc(241 / 1076 * 100%);
+    height: calc(270 / 1280 * 100%);
+    background-image: url(../images/pig-arm-left.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pig-arm-right {
+    left: calc(839 / 1076 * 100%);
+    top: calc(583 / 1280 * 100%);
+    z-index: 60;
+    width: calc(241 / 1076 * 100%);
+    height: calc(270 / 1280 * 100%);
+    background-image: url(../images/pig-arm-right.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pig-leg-left {
+    left: calc(285 / 1076 * 100%);
+    top: calc(1063 / 1280 * 100%);
+    z-index: 60;
+    width: calc(126 / 1076 * 100%);
+    height: calc(226 / 1280 * 100%);
+    background-image: url(../images/pig-leg-left.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pig-leg-right {
+    left: calc(690 / 1076 * 100%);
+    top: calc(1063 / 1280 * 100%);
+    z-index: 60;
+    width: calc(126 / 1076 * 100%);
+    height: calc(226 / 1280 * 100%);
+    background-image: url(../images/pig-leg-right.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pig-tail {
+    left: calc(35 / 1076 * 100%);
+    top: calc(870 / 1280 * 100%);
+    z-index: 60;
+    width: calc(299 / 1076 * 100%);
+    height: calc(263 / 1280 * 100%);
+    background-image: url(../images/pig-tail-front.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
