@@ -1,3 +1,30 @@
+@keyframes tail-ani {
+    from {
+        transform: rotateY(15deg);
+    }
+    to {
+        transform: rotateY(-15deg);
+    }
+}
+
+@keyframes leg-ani {
+    from {
+        transform: rotateX(30deg);
+    }
+    to {
+        transform: rotateX(-30deg);
+    }
+}
+
+@keyframes arm-ani {
+    from {
+        transform: rotateY(90deg);
+    }
+    to {
+        transform: rotateY(-90deg);
+    }
+}
+
 body {
     height: 500vw;
     background: #000;
@@ -135,6 +162,38 @@ body {
     transform-style: preserve-3d;
 }
 
+.character[data-direction='forward'] {
+    transform: rotateY(180deg)rotateX(-65deg);
+}
+
+.character[data-direction='backward'] {
+    transform: rotateY(0deg)rotateX(-55deg);
+}
+
+.character[data-direction='left'] {
+    transform: rotateY(-90deg) rotateX(-65deg);
+}
+
+.character[data-direction='right'] {
+    transform: rotateY(90deg)rotateX(-65deg);
+}
+
+.character.swim .pig-leg-left {
+    animation: leg-ani 0.2s alternate infinite linear;
+}
+
+.character.swim .pig-leg-right {
+    animation: leg-ani 0.2s alternate-reverse infinite linear;
+}
+
+.character.swim .pig-arm-left {
+    animation: arm-ani 1s alternate infinite linear;
+}
+
+.character.swim .pig-arm-right {
+    animation: arm-ani 1s alternate infinite linear;
+}
+
 .character-face {
     position: absolute;
     left: 0;
@@ -179,6 +238,7 @@ body {
     background-image: url(../images/pig-arm-left.png);
     background-size: contain;
     background-repeat: no-repeat;
+    transform-origin: 100% 10%;
 }
 
 .pig-arm-right {
@@ -190,6 +250,7 @@ body {
     background-image: url(../images/pig-arm-right.png);
     background-size: contain;
     background-repeat: no-repeat;
+    transform-origin: 0% 10%;
 }
 
 .pig-leg-left {
@@ -201,6 +262,7 @@ body {
     background-image: url(../images/pig-leg-left.png);
     background-size: contain;
     background-repeat: no-repeat;
+    transform-origin: top;
 }
 
 .pig-leg-right {
@@ -212,6 +274,7 @@ body {
     background-image: url(../images/pig-leg-right.png);
     background-size: contain;
     background-repeat: no-repeat;
+    transform-origin: top;
 }
 
 .pig-tail {
@@ -223,4 +286,6 @@ body {
     background-image: url(../images/pig-tail-front.png);
     background-size: contain;
     background-repeat: no-repeat;
+    transform-origin: right;
+    animation: tail-ani 0.6s alternate infinite cubic-bezier(0.46, 0.18, 0.66, 0.93);
 }
