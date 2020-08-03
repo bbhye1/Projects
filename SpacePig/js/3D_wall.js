@@ -28,9 +28,16 @@
         mousePos.y = -(e.clientY / window.innerHeight - 0.5) * 30;
         stageElem.style.transform = 'rotateX(' + mousePos.y + 'deg) rotateY(' + mousePos.x + 'deg)'
     }
+
+    function clickHandler(e) {
+        mousePos.x = e.clientX / window.innerWidth;
+        new Character(mousePos);
+    }
+    window.addEventListener('click', clickHandler);
     window.addEventListener('mousemove', mouseMoveHandler);
     window.addEventListener('scroll', scrollHandler);
     window.addEventListener('resize', resizeHandler);
 
     resizeHandler();
+
 })();
