@@ -6,7 +6,7 @@
         const startScreen = startBtnElem.parentNode;
         document.body.removeChild(startScreen);
         new Space();
-
+        document.body.style.height = 500 + 'vw';
         const houseElem = document.querySelector('.house');
         const stageElem = document.querySelector('.stage');
         const progressElem = document.querySelector('.progress-bar');
