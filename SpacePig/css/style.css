@@ -84,7 +84,8 @@ body {
 
 .wall-side-bottom {
     height: 1000vw;
-    transform: rotateX(90deg) translateZ(calc(453vw));
+    width: 200vw;
+    transform: rotateX(90deg) translateZ(350vw) translateX(-50vw) translateY(-300vw);
     background: url(../images/space_side_img.jpg);
 }
 
@@ -146,7 +147,7 @@ body {
     height: 10px;
     border-radius: 50%;
     background-color: purple;
-    position: absolute;
+    float: right;
 }
 
 
@@ -155,27 +156,28 @@ body {
 .character {
     position: absolute;
     top: 50%;
-    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     z-index: 100;
     width: 10.7vw;
     height: 12.8vw;
+    transform-origin: 50% 50%;
     transform-style: preserve-3d;
 }
 
 .character[data-direction='forward'] {
-    transform: rotateY(180deg)rotateX(-65deg);
+    transform: rotateY(180deg) rotateX(-65deg) translateX(50%) translateY(-50%);
 }
 
 .character[data-direction='backward'] {
-    transform: rotateY(0deg)rotateX(-55deg);
+    transform: rotateY(0deg) rotateX(-55deg) translateX(-50%) translateY(-50%);
 }
 
 .character[data-direction='left'] {
-    transform: rotateY(-90deg) rotateX(-65deg);
+    transform: rotateY(-90deg) rotateX(-65deg) translateX(-50%) translateY(-50%);
 }
 
 .character[data-direction='right'] {
-    transform: rotateY(90deg)rotateX(-65deg);
+    transform: rotateY(90deg) rotateX(-65deg) translateX(50%) translateY(50%);
 }
 
 .character.swim .pig-leg-left {
