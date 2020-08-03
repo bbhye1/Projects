@@ -30,8 +30,11 @@
     }
 
     function clickHandler(e) {
-        mousePos.x = e.clientX / window.innerWidth;
-        new Character(mousePos);
+
+        new Character({
+            x: e.clientX / window.innerWidth,
+            speed: Math.random() * 0.5 + 0.2
+        });
     }
     window.addEventListener('click', clickHandler);
     window.addEventListener('mousemove', mouseMoveHandler);
