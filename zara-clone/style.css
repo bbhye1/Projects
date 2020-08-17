@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed&display=swap');
+:root {
+    --color-main: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background: #fff;
+    margin: 0;
+    height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+    color: #fff;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 80;
+}
+
+.btn {
+    position: absolute;
+    background: transparent;
+    color: var(--color-main);
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
+
+h1 {
+    position: absolute;
+    left: -5000px;
+}
+
+h3 {
+    font-size: 7rem;
+    margin: 0;
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    padding: 23px 0;
+    width: 100%;
+}
+
+.head-container {
+    width: 100%;
+}
+
+.head-left {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .menu-icon i {
+    font-size: 30px;
+    margin: 0 20px;
+}
+
+.logo {
+    display: block;
+    width: 170px;
+}
+
+.head-right {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.head-right a {
+    display: block;
+    color: var(--color-main);
+}
+
+.user-name-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.user-name-menu li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 5px;
+}
+
+.user-name-menu li:last-child {
+    margin-left: 15px;
+}
+
+.user-name-menu li:last-child a {
+    position: relative;
+}
+
+.user-name-menu li:last-child svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: inline-block;
+}
+
+.search::after {
+    content: "";
+    display: inline-block;
+    background: var(--color-main);
+    height: 1px;
+    width: 150px;
+    margin-left: 5px;
+}
+
+main {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow: hidden;
+}
+
+.content p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.content .view-btn {
+    position: static;
+    border: 2px var(--color-main) solid;
+    border-radius: 0;
+    padding: 7px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.content .btn-down {
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.content img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow-x: hidden;
+    z-index: -1;
+}
+
+.menu {
+    display: none;
+}
+
+.direct-control {
+    display: none;
+}
