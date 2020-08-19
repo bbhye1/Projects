@@ -68,6 +68,13 @@ const mainData = {
     ]
 };
 
+// Get category data
+const cateData = [];
+
+for (let i in mainData) {
+    cateData.push(i);
+}
+
 // Display main contents in DOM
 function ShowMainElem() {
     // Create columns in DOM
@@ -82,7 +89,7 @@ function ShowMainElem() {
             if (content.video) {
                 contentEl.innerHTML = `
                     <div class="content">
-                        <video id="main-video" src="${content.video}" autoplay></video>
+                        <video id="main-video" src="${content.video}" autoplay loop></video>
                         <h3>${content.title}</h3>
                         <p>${content.contents}</p>
                         <button class="btn view-btn" id="${content.title.toLowerCase()}">VIEW</button>
@@ -133,7 +140,8 @@ rightBtn.addEventListener('click', () => {
 
     horiPage[currentActivePage].className = 'contents-column active';
 
-    // ShowhoriSlideBtn();
+    ShowhoriSlideBtn();
+    getBtnText();
 })
 
 // Left button click event 
@@ -148,8 +156,36 @@ leftBtn.addEventListener('click', () => {
 
     horiPage[currentActivePage].className = 'contents-column active';
 
-    // ShowhoriSlideBtn();
+    ShowhoriSlideBtn();
+    getBtnText();
 })
+
+// Show horizontal slide button by sliding page. 
+function ShowhoriSlideBtn() {
+    horiPage[currentActivePage].className = 'contents-column active';
+
+    // Button display 
+    if (horiPage[currentActivePage].className === 'contents-column active' &&
+        currentActivePage === horiPage.length - 1) {
+        rightBtn.style.display = 'none'
+    } else if (horiPage[currentActivePage].className === 'contents-column active' &&
+        currentActivePage === 0) {
+        leftBtn.style.display = 'none'
+    } else {
+        rightBtn.style.display = 'block'
+        leftBtn.style.display = 'block'
+    }
+}
+
+// Button innertext 
+function getBtnText() {
+    if (leftBtn.style.display !== 'none') {
+        leftBtn.innerHTML = `${cateData[currentActivePage - 1].toUpperCase()}<i class="fas fa-chevron-left"></i>`;
+    }
+    if (rightBtn.style.display !== 'none') {
+        rightBtn.innerHTML = `<i class="fas fa-chevron-right"></i>${cateData[currentActivePage +1].toUpperCase()}`;
+    }
+}
 
 
 // Change image by window size
