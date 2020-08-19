@@ -75,7 +75,7 @@ let currentActivePage = 1;
 
 // Get data
 const cateData = [];
-const slideControlData = [];
+let slideControlData = [];
 
 for (let i in mainData) {
     cateData.push(i);
@@ -147,6 +147,7 @@ rightBtn.addEventListener('click', () => {
     ShowhoriSlideBtn();
     getBtnText();
     showSlideList();
+    slideControlData[0].classList.add('on');
 })
 
 // Left button click event 
@@ -164,6 +165,8 @@ leftBtn.addEventListener('click', () => {
     ShowhoriSlideBtn();
     getBtnText();
     showSlideList();
+    slideControlData[0].classList.add('on');
+
 })
 
 // Show horizontal slide button by sliding page. 
@@ -197,6 +200,7 @@ function getBtnText() {
 // Slide down event listener
 
 window.addEventListener('mousewheel', e => {
+    const contents = getColumnElem();
     if (e.wheelDelta > 0) {
         mouseWheel--;
     } else {
@@ -205,11 +209,11 @@ window.addEventListener('mousewheel', e => {
 
     if (mouseWheel < 0) {
         mouseWheel = 0;
-    } else if (mouseWheel > cateData.length) {
-        mouseWheel = cateData.length;
+    } else if (mouseWheel >= contents.length) {
+        mouseWheel = contents.length - 1;
     }
 
-    mainEl.style.transform = `translateY(-${100*mouseWheel}vh)`
+    moveToSelectedSlide(mouseWheel);
     changeMainColor();
     showCurrentSlide(mouseWheel);
 });
@@ -217,14 +221,24 @@ window.addEventListener('mousewheel', e => {
 // Slide click event listener
 slideListCon.addEventListener('click', e => {
     const parent = e.target.parentNode;
-    if (parent.classList.contains('slide-control')) {
-        slideControlData.forEach(slide => {
-            slide.classList.remove('on');
-            e.target.classList.add('on');
-        })
+    if (!parent.classList.contains('slide-control')) {
+        return;
     }
+
+    slideControlData.forEach((slide, index) => {
+        slide.classList.remove('on');
+        if (slide === e.target) {
+            e.target.classList.add('on');
+            moveToSelectedSlide(index);
+        }
+    })
+
 })
 
+// Move to selected slide 
+function moveToSelectedSlide(index) {
+    mainEl.style.transform = `translateY(-${100*index}vh)`
+}
 
 // Show current list in slide control list
 showSlideList();
@@ -232,7 +246,7 @@ slideControlData[0].classList.add('on');
 
 function showCurrentSlide(index) {
     for (let slide in slideControlData) {
-        if (Number(slide) === index) {
+        if (Number(slide) === Number(index)) {
             slideControlData[slide].classList.add('on');
         } else {
             slideControlData[slide].classList.remove('on');
@@ -261,8 +275,8 @@ function changeMainColor() {
 
 // Show slide control list in DOM
 function showSlideList() {
-    const contents = horiPage[currentActivePage].children;
-
+    slideControlData = [];
+    const contents = getColumnElem();;
     slideListCon.innerHTML = '';
     for (i of contents) {
         const listEl = document.createElement('li');
@@ -271,7 +285,10 @@ function showSlideList() {
     }
 }
 
-
+// Get slides of each column
+function getColumnElem() {
+    return horiPage[currentActivePage].children;
+}
 
 
 // Change image by window size
