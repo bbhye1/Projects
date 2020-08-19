@@ -4,6 +4,7 @@ const mainImgEl = document.getElementById('main-img');
 const mainEl = document.getElementById('contents');
 const directControlCon = document.getElementById('direct-control');
 const logoEl = document.getElementById('logo');
+const cartLogoEl = document.getElementById('cart');
 
 const mainData = {
     man: [{
@@ -127,6 +128,7 @@ horiPage[currentActivePage].className = 'contents-column active';
 horiPage[currentActivePage - 1].className = 'contents-column left';
 horiPage[currentActivePage + 1].className = 'contents-column right';
 
+// Slide horizontal
 // Right button click event 
 rightBtn.addEventListener('click', () => {
 
@@ -177,13 +179,50 @@ function ShowhoriSlideBtn() {
     }
 }
 
-// Button innertext 
+// Button inner text 
 function getBtnText() {
     if (leftBtn.style.display !== 'none') {
         leftBtn.innerHTML = `${cateData[currentActivePage - 1].toUpperCase()}<i class="fas fa-chevron-left"></i>`;
     }
     if (rightBtn.style.display !== 'none') {
         rightBtn.innerHTML = `<i class="fas fa-chevron-right"></i>${cateData[currentActivePage +1].toUpperCase()}`;
+    }
+}
+
+// Slide vertical
+// Slide down event listener
+let mouseWheel = 0;
+
+window.addEventListener('mousewheel', e => {
+    if (e.wheelDelta > 0) {
+        mouseWheel--;
+    } else {
+        mouseWheel++;
+    }
+
+    if (mouseWheel < 0) {
+        mouseWheel = 0;
+    } else if (mouseWheel > cateData.length) {
+        mouseWheel = cateData.length;
+    }
+    mainEl.style.transform = `translateY(-${100*mouseWheel}vh)`
+
+    changeMainColor();
+});
+
+// Change Main color 
+function changeMainColor() {
+    const logoChild = logoEl.childNodes[1];
+    const cartLogoChild = cartLogoEl.childNodes[0].childNodes[0];
+
+    if (mouseWheel == 0 || mouseWheel % 2 == 0) {
+        document.documentElement.style.setProperty('--color-main', '#fff');
+        logoChild.setAttribute('fill', 'white');
+        cartLogoChild.setAttribute('fill', 'white');
+    } else if (mouseWheel % 2 == 1) {
+        document.documentElement.style.setProperty('--color-main', '#000');
+        logoChild.setAttribute('fill', 'black');
+        cartLogoChild.setAttribute('fill', 'black');
     }
 }
 
