@@ -2,9 +2,10 @@ const menuIcon = document.getElementById('menu-icon');
 const menuEl = document.getElementById('menu');
 const mainImgEl = document.getElementById('main-img');
 const mainEl = document.getElementById('contents');
-const directControlCon = document.getElementById('direct-control');
 const logoEl = document.getElementById('logo');
 const cartLogoEl = document.getElementById('cart');
+const slideListCon = document.getElementById('slide-control');
+
 
 const mainData = {
     man: [{
@@ -69,8 +70,12 @@ const mainData = {
     ]
 };
 
-// Get category data
+let mouseWheel = 0;
+let currentActivePage = 1;
+
+// Get data
 const cateData = [];
+const slideControlData = [];
 
 for (let i in mainData) {
     cateData.push(i);
@@ -112,13 +117,10 @@ function ShowMainElem() {
     }
 };
 
-
-
-
 ShowMainElem();
 
 // Button click
-let currentActivePage = 1;
+
 const horiPage = document.querySelectorAll('.contents-column');
 const leftBtn = document.getElementById('left');
 const rightBtn = document.getElementById('right');
@@ -144,6 +146,7 @@ rightBtn.addEventListener('click', () => {
 
     ShowhoriSlideBtn();
     getBtnText();
+    showSlideList();
 })
 
 // Left button click event 
@@ -160,6 +163,7 @@ leftBtn.addEventListener('click', () => {
 
     ShowhoriSlideBtn();
     getBtnText();
+    showSlideList();
 })
 
 // Show horizontal slide button by sliding page. 
@@ -191,7 +195,6 @@ function getBtnText() {
 
 // Slide vertical
 // Slide down event listener
-let mouseWheel = 0;
 
 window.addEventListener('mousewheel', e => {
     if (e.wheelDelta > 0) {
@@ -205,10 +208,38 @@ window.addEventListener('mousewheel', e => {
     } else if (mouseWheel > cateData.length) {
         mouseWheel = cateData.length;
     }
-    mainEl.style.transform = `translateY(-${100*mouseWheel}vh)`
 
+    mainEl.style.transform = `translateY(-${100*mouseWheel}vh)`
     changeMainColor();
+    showCurrentSlide(mouseWheel);
 });
+
+// Slide click event listener
+slideListCon.addEventListener('click', e => {
+    const parent = e.target.parentNode;
+    if (parent.classList.contains('slide-control')) {
+        slideControlData.forEach(slide => {
+            slide.classList.remove('on');
+            e.target.classList.add('on');
+        })
+    }
+})
+
+
+// Show current list in slide control list
+showSlideList();
+slideControlData[0].classList.add('on');
+
+function showCurrentSlide(index) {
+    for (let slide in slideControlData) {
+        if (Number(slide) === index) {
+            slideControlData[slide].classList.add('on');
+        } else {
+            slideControlData[slide].classList.remove('on');
+        }
+    }
+}
+
 
 // Change Main color 
 function changeMainColor() {
@@ -225,6 +256,22 @@ function changeMainColor() {
         cartLogoChild.setAttribute('fill', 'black');
     }
 }
+
+
+
+// Show slide control list in DOM
+function showSlideList() {
+    const contents = horiPage[currentActivePage].children;
+
+    slideListCon.innerHTML = '';
+    for (i of contents) {
+        const listEl = document.createElement('li');
+        slideListCon.appendChild(listEl);
+        slideControlData.push(listEl);
+    }
+}
+
+
 
 
 // Change image by window size
