@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed&display=swap');
-:root {
+ :root {
     --color-main: #fff;
 }
 
@@ -161,7 +161,7 @@ main {
     top: 0;
     left: 0;
     transform: translateX(100%);
-    transition: transform 1s ease;
+    transition: transform 1s ease, top 1s ease;
 }
 
 .contents-column.active {
@@ -169,11 +169,11 @@ main {
 }
 
 .contents-column.left {
-    transform: translate(-100%, 0);
+    transform: translateX(-100%);
 }
 
 .contents-column.right {
-    transition: translate(100%, 0);
+    transition: translateX(100%);
 }
 
 .contents {
@@ -193,6 +193,8 @@ main {
     height: 100vh;
     text-align: center;
     font-family: 'Roboto Condensed', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .content p {

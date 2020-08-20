@@ -94,7 +94,7 @@ function ShowMainElem() {
             contentEl.classList.add('content');
             if (content.video) {
                 contentEl.innerHTML = `
-                    <div class="content">
+                    <div class="content" draggable = "true">
                         <video id="main-video" src="${content.video}" autoplay loop></video>
                         <h3>${content.title}</h3>
                         <p>${content.contents}</p>
@@ -103,7 +103,7 @@ function ShowMainElem() {
                     </div>`
             } else {
                 contentEl.innerHTML = `
-                    <div class="content" id="${content.number}">
+                    <div class="content" id="${content.number}" draggable = "true">
                         <img id="main-img" src="images/landscape_${content.number}.jpg" alt="">
                         <h3>${content.title}</h3>
                         <p>${content.contents}</p>
@@ -131,8 +131,10 @@ horiPage[currentActivePage - 1].className = 'contents-column left';
 horiPage[currentActivePage + 1].className = 'contents-column right';
 
 // Slide horizontal
-// Right button click event 
-rightBtn.addEventListener('click', () => {
+function slideRight() {
+    // if (currentActivePage - 1) {
+    //     horiPage[currentActivePage - 1].className = 'contents-column';
+    // }
 
     horiPage[currentActivePage].className = 'contents-column left';
 
@@ -148,10 +150,12 @@ rightBtn.addEventListener('click', () => {
     getBtnText();
     showSlideList();
     slideControlData[0].classList.add('on');
-})
+}
 
-// Left button click event 
-leftBtn.addEventListener('click', () => {
+function slideLeft() {
+    // if (currentActivePage + 2) {
+    //     horiPage[currentActivePage + 2].className = 'contents-column';
+    // }
     horiPage[currentActivePage].className = 'contents-column right';
 
     currentActivePage = currentActivePage - 1;
@@ -159,15 +163,20 @@ leftBtn.addEventListener('click', () => {
     if (currentActivePage < 0) {
         currentActivePage = 0
     }
-
     horiPage[currentActivePage].className = 'contents-column active';
 
     ShowhoriSlideBtn();
     getBtnText();
     showSlideList();
     slideControlData[0].classList.add('on');
+}
 
-})
+
+// Right button click event 
+rightBtn.addEventListener('click', slideRight)
+
+// Left button click event 
+leftBtn.addEventListener('click', slideLeft)
 
 // Show horizontal slide button by sliding page. 
 function ShowhoriSlideBtn() {
@@ -237,7 +246,7 @@ slideListCon.addEventListener('click', e => {
 
 // Move to selected slide 
 function moveToSelectedSlide(index) {
-    mainEl.style.transform = `translateY(-${100*index}vh)`
+    horiPage[currentActivePage].style.top = `-${100*index}vh`
 }
 
 // Show current list in slide control list
@@ -309,3 +318,32 @@ menuIcon.addEventListener('mouseover', () => {
 menuEl.addEventListener('mouseleave', () => {
     menuEl.classList.remove('show');
 });
+
+
+
+// Slide move by dragging the page
+let startX = 0;
+let dragPer = 0;
+mainEl.addEventListener('mousedown', e => {
+    console.log('mousedown' + e.clientX);
+    startX = e.clientX
+})
+mainEl.addEventListener('dragover', e => {
+    dragPer = (startX - e.clientX) / window.innerWidth * 100;
+
+    mainEl.style.transform = `translateX(${-(dragPer+1)}vw)`;
+    mainEl.style.transition = 'none';
+})
+
+
+
+mainEl.addEventListener("dragend", () => {
+    mainEl.style.transform = `translateX(0vw)`;
+    mainEl.style.transition = 'transform 1s ease';
+    if (dragPer > 0) {
+        slideRight();
+
+    } else {
+        slideLeft();
+    }
+})
