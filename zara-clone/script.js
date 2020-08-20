@@ -70,7 +70,7 @@ const mainData = {
     ]
 };
 
-let mouseWheel = 0;
+let wheel = 0;
 let currentActivePage = 1;
 
 // Get data
@@ -132,10 +132,6 @@ horiPage[currentActivePage + 1].className = 'contents-column right';
 
 // Slide horizontal
 function slideRight() {
-    // if (currentActivePage - 1) {
-    //     horiPage[currentActivePage - 1].className = 'contents-column';
-    // }
-
     horiPage[currentActivePage].className = 'contents-column left';
 
     currentActivePage = currentActivePage + 1;
@@ -153,9 +149,6 @@ function slideRight() {
 }
 
 function slideLeft() {
-    // if (currentActivePage + 2) {
-    //     horiPage[currentActivePage + 2].className = 'contents-column';
-    // }
     horiPage[currentActivePage].className = 'contents-column right';
 
     currentActivePage = currentActivePage - 1;
@@ -211,20 +204,20 @@ function getBtnText() {
 window.addEventListener('mousewheel', e => {
     const contents = getColumnElem();
     if (e.wheelDelta > 0) {
-        mouseWheel--;
+        wheel--;
     } else {
-        mouseWheel++;
+        wheel++;
     }
 
-    if (mouseWheel < 0) {
-        mouseWheel = 0;
-    } else if (mouseWheel >= contents.length) {
-        mouseWheel = contents.length - 1;
+    if (wheel < 0) {
+        wheel = 0;
+    } else if (wheel >= contents.length) {
+        wheel = contents.length - 1;
     }
 
-    moveToSelectedSlide(mouseWheel);
+    moveToSelectedSlide(wheel);
     changeMainColor();
-    showCurrentSlide(mouseWheel);
+    showCurrentSlide(wheel);
 });
 
 // Slide click event listener
@@ -269,11 +262,11 @@ function changeMainColor() {
     const logoChild = logoEl.childNodes[1];
     const cartLogoChild = cartLogoEl.childNodes[0].childNodes[0];
 
-    if (mouseWheel == 0 || mouseWheel % 2 == 0) {
+    if (wheel == 0 || wheel % 2 == 0) {
         document.documentElement.style.setProperty('--color-main', '#fff');
         logoChild.setAttribute('fill', 'white');
         cartLogoChild.setAttribute('fill', 'white');
-    } else if (mouseWheel % 2 == 1) {
+    } else if (wheel % 2 == 1) {
         document.documentElement.style.setProperty('--color-main', '#000');
         logoChild.setAttribute('fill', 'black');
         cartLogoChild.setAttribute('fill', 'black');
@@ -323,27 +316,73 @@ menuEl.addEventListener('mouseleave', () => {
 
 // Slide move by dragging the page
 let startX = 0;
-let dragPer = 0;
+let startY = 0;
+let dragPerX = 0;
+let dragPerY = 0;
+let dragDirect;
+
+// Drag event listeners
 mainEl.addEventListener('mousedown', e => {
-    console.log('mousedown' + e.clientX);
     startX = e.clientX
+    startY = e.clientY
 })
+
 mainEl.addEventListener('dragover', e => {
-    dragPer = (startX - e.clientX) / window.innerWidth * 100;
+    dragPerX = (startX - e.clientX) / window.innerWidth * -100;
+    dragPerY = (startY - e.clientY) / document.body.offsetHeight * -100;
 
-    mainEl.style.transform = `translateX(${-(dragPer+1)}vw)`;
+    // Get the direction
+    if (Math.abs(dragPerX) < Math.abs(dragPerY)) {
+        dragDirect = 'vertical';
+    }
+    if (Math.abs(dragPerY) < Math.abs(dragPerX)) {
+        dragDirect = 'horizontal';
+    }
+
+    // Move content while dragging content 
+    if (dragDirect === 'horizontal') {
+        mainEl.style.transform = `translateX(${(dragPerX+1)}vw)`;
+    }
+    if (dragDirect === 'vertical') {
+        horiPage[currentActivePage].style.top = `${(dragPerY+1)}vh`;
+    }
+
     mainEl.style.transition = 'none';
-})
+
+});
 
 
 
-mainEl.addEventListener("dragend", () => {
+mainEl.addEventListener("dragend", e => {
+    const contents = getColumnElem();
     mainEl.style.transform = `translateX(0vw)`;
     mainEl.style.transition = 'transform 1s ease';
-    if (dragPer > 0) {
-        slideRight();
 
+    // Get the Vertical page index
+    const endY = e.clientY;
+    if (startY < endY) {
+        wheel--;
     } else {
-        slideLeft();
+        wheel++;
+    }
+
+    if (wheel < 0) {
+        wheel = 0;
+    } else if (wheel >= contents.length) {
+        wheel = contents.length - 1;
+    }
+
+    // Slide to its direction
+    if (dragDirect === 'horizontal') {
+        if (dragPerX < 0) {
+            slideRight();
+
+        } else if (dragPerX > 0) {
+            slideLeft();
+        }
+    }
+
+    if (dragDirect === 'vertical') {
+        moveToSelectedSlide(wheel);
     }
 })
