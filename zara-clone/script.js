@@ -230,15 +230,17 @@ slideListCon.addEventListener('click', e => {
         return;
     }
 
-    slideControlData.forEach((slide, index) => {
-        slide.classList.remove('on');
-        if (slide === e.target) {
+    slideControlData[currentActivePage].forEach((listItem, index) => {
+        listItem.classList.remove('on');
+        if (listItem === e.target) {
             e.target.classList.add('on');
             moveToSelectedSlide(index);
         }
-    })
+    });
 
 })
+
+
 
 // Move to selected slide 
 function moveToSelectedSlide(index) {
@@ -394,5 +396,6 @@ mainEl.addEventListener("dragend", e => {
 
     if (dragDirect === 'vertical') {
         moveToSelectedSlide(wheel);
+        showCurrentSlide(wheel);
     }
 })
