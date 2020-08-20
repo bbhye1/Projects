@@ -93,24 +93,24 @@ function ShowMainElem() {
         mainData[column].forEach(content => {
             const contentEl = document.createElement('div');
             contentEl.classList.add('content');
+            contentEl.setAttribute('draggable', true);
             if (content.video) {
                 contentEl.innerHTML = `
-                    <div class="content" draggable = "true">
-                        <video id="main-video" src="${content.video}" autoplay loop></video>
+                        <video id="main-video" src="${content.video}" autoplay loop /></video>
                         <h3>${content.title}</h3>
                         <p>${content.contents}</p>
                         <button class="btn view-btn" id="${content.title.toLowerCase()}">VIEW</button>
                         <button class="btn btn-down" id="down"><i class="fas fa-chevron-down"></i></button>
-                    </div>`
+                    `
             } else {
+                contentEl.setAttribute('id', content.number)
                 contentEl.innerHTML = `
-                    <div class="content" id="${content.number}" draggable = "true">
                         <img id="main-img" src="images/landscape_${content.number}.jpg" alt="">
                         <h3>${content.title}</h3>
                         <p>${content.contents}</p>
                         <button class="btn view-btn" id="${content.title.toLowerCase()}">VIEW</button>
                         <button class="btn btn-down" id="down"><i class="fas fa-chevron-down"></i></button>
-                    </div>`
+                    `
             }
             columnEl.appendChild(contentEl);
             columnItemList.push(contentEl);
@@ -309,15 +309,20 @@ function getColumnElem() {
     return horiPage[currentActivePage].children;
 }
 
-
 // Change image by window size
-// window.addEventListener('resize', () => {
-//     if (window.innerWidth <= 970) {
-//         mainData.src = "images/portrait_1.jpg";
-//     } else if (window.innerWidth > 970) {
-//         mainImgEl.src = "images/landscape_1.jpg";
-//     }
-// })
+window.addEventListener('resize', () => {
+    const contents = document.querySelectorAll('#main-img');
+    for (i of contents) {
+        const imgNum = i.parentElement.id;
+        console.log(i.src);
+        if (window.innerWidth <= 970) {
+            i.src = `images/portrait_${imgNum}.jpg`
+        } else if (window.innerWidth > 970) {
+            i.src = `images/landscape_${imgNum}.jpg`
+        }
+    }
+
+})
 
 // Navigation show event listener
 menuIcon.addEventListener('mouseover', () => {
