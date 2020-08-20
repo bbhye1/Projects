@@ -75,6 +75,7 @@ let currentActivePage = 1;
 
 // Get data
 const cateData = [];
+const divListData = [];
 let slideControlData = [];
 
 for (let i in mainData) {
@@ -87,7 +88,7 @@ function ShowMainElem() {
     for (let column in mainData) {
         const columnEl = document.createElement('div');
         columnEl.classList.add('contents-column');
-
+        const columnItemList = [];
         // Create contents in column
         mainData[column].forEach(content => {
             const contentEl = document.createElement('div');
@@ -112,12 +113,15 @@ function ShowMainElem() {
                     </div>`
             }
             columnEl.appendChild(contentEl);
+            columnItemList.push(contentEl);
         });
         mainEl.appendChild(columnEl);
+        divListData.push(columnItemList);
     }
 };
 
 ShowMainElem();
+getListItem();
 
 // Button click
 
@@ -142,10 +146,9 @@ function slideRight() {
 
     horiPage[currentActivePage].className = 'contents-column active';
 
+    showSlideList();
     ShowhoriSlideBtn();
     getBtnText();
-    showSlideList();
-    slideControlData[0].classList.add('on');
 }
 
 function slideLeft() {
@@ -158,10 +161,9 @@ function slideLeft() {
     }
     horiPage[currentActivePage].className = 'contents-column active';
 
+    showSlideList();
     ShowhoriSlideBtn();
     getBtnText();
-    showSlideList();
-    slideControlData[0].classList.add('on');
 }
 
 
@@ -203,6 +205,7 @@ function getBtnText() {
 
 window.addEventListener('mousewheel', e => {
     const contents = getColumnElem();
+
     if (e.wheelDelta > 0) {
         wheel--;
     } else {
@@ -244,18 +247,18 @@ function moveToSelectedSlide(index) {
 
 // Show current list in slide control list
 showSlideList();
-slideControlData[0].classList.add('on');
+
 
 function showCurrentSlide(index) {
-    for (let slide in slideControlData) {
+    const nowColumn = slideControlData[currentActivePage];
+    for (let slide in nowColumn) {
         if (Number(slide) === Number(index)) {
-            slideControlData[slide].classList.add('on');
+            nowColumn[slide].classList.add('on');
         } else {
-            slideControlData[slide].classList.remove('on');
+            nowColumn[slide].classList.remove('on');
         }
     }
 }
-
 
 // Change Main color 
 function changeMainColor() {
@@ -277,13 +280,25 @@ function changeMainColor() {
 
 // Show slide control list in DOM
 function showSlideList() {
-    slideControlData = [];
-    const contents = getColumnElem();;
+    const nowColumn = slideControlData[currentActivePage];
     slideListCon.innerHTML = '';
-    for (i of contents) {
-        const listEl = document.createElement('li');
-        slideListCon.appendChild(listEl);
-        slideControlData.push(listEl);
+
+    nowColumn.forEach(list => {
+        slideListCon.appendChild(list);
+    })
+}
+
+// Create list item data 
+function getListItem() {
+    for (column of divListData) {
+        const columnList = [];
+        column.forEach(() => {
+            const listEl = document.createElement('li');
+            columnList.push(listEl);
+        })
+        columnList[0].classList.add('on');
+        slideControlData.push(columnList);
+
     }
 }
 
@@ -302,8 +317,6 @@ function getColumnElem() {
 //     }
 // })
 
-
-
 // Navigation show event listener
 menuIcon.addEventListener('mouseover', () => {
     menuEl.classList.add('show');
@@ -311,8 +324,6 @@ menuIcon.addEventListener('mouseover', () => {
 menuEl.addEventListener('mouseleave', () => {
     menuEl.classList.remove('show');
 });
-
-
 
 // Slide move by dragging the page
 let startX = 0;
@@ -348,7 +359,6 @@ mainEl.addEventListener('dragover', e => {
     }
 
     mainEl.style.transition = 'none';
-
 });
 
 
