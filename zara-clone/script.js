@@ -8,6 +8,15 @@ const slideListCon = document.getElementById('slide-control');
 const leftBtn = document.getElementById('left');
 const rightBtn = document.getElementById('right');
 
+let wheel = 0;
+let currentActivePage = 1;
+let startX = 0;
+let startY = 0;
+let dragPerX = 0;
+let dragPerY = 0;
+let dragDirect;
+
+init();
 
 // Get main data from data.json 
 async function getDataFromJson() {
@@ -35,7 +44,6 @@ async function init() {
 
     // Set Event listeners
     setEventByMainData(divListData, cateData, slideControlData);
-
 }
 
 function setEventByMainData(divListData, cateData, slideControlData) {
@@ -48,11 +56,22 @@ function setEventByMainData(divListData, cateData, slideControlData) {
     window.addEventListener('mousewheel', (e) => slideVertical(e, divListData, slideControlData));
 
     // Vertical slide control icon click event 
-    slideListCon.addEventListener('click', e => i(e, slideControlData, divListData));
+    slideListCon.addEventListener('click', e => sildeIconClick(e, slideControlData, divListData));
 
     // Navigation display event listener
     menuIcon.addEventListener('mouseover', () => menuEl.classList.add('show'));
     menuEl.addEventListener('mouseleave', () => menuEl.classList.remove('show'));
+
+    // Drag events to move slide  
+    mainEl.addEventListener('mousedown', e => {
+        startX = e.clientX
+        startY = e.clientY
+    })
+    mainEl.addEventListener('dragover', e => dragoverHandler(e, divListData));
+    mainEl.addEventListener("dragend", e => dragendHandler(e, divListData, cateData, slideControlData));
+
+    // Change image by window size
+    window.addEventListener('resize', resizeHandler);
 }
 
 // show inital active page
@@ -61,11 +80,6 @@ function setInitActivePage(divListData) {
     divListData[currentActivePage - 1].className = 'contents-column left';
     divListData[currentActivePage + 1].className = 'contents-column right';
 }
-
-init();
-
-let wheel = 0;
-let currentActivePage = 1;
 
 // get category data from mainData
 function getCateDataFromMain(mainData) {
@@ -205,7 +219,7 @@ function slideVertical(e, divListData, slideControlData) {
 }
 
 // Slide click event listener
-function i(e, slideControlData, divListData) {
+function sildeIconClick(e, slideControlData, divListData) {
     const parent = e.target.parentNode;
     if (!parent.classList.contains('slide-control')) {
         return;
@@ -283,36 +297,8 @@ function changeMainColor() {
     }
 }
 
-// Change image by window size
-window.addEventListener('resize', () => {
-    const contents = document.querySelectorAll('#main-img');
-    for (i of contents) {
-        const imgNum = i.parentElement.id;
-        if (window.innerWidth <= 970) {
-            i.src = `images/portrait_${imgNum}.jpg`
-        } else if (window.innerWidth > 970) {
-            i.src = `images/landscape_${imgNum}.jpg`
-        }
-    }
-
-})
-
-
-
 // Slide move by dragging the page
-let startX = 0;
-let startY = 0;
-let dragPerX = 0;
-let dragPerY = 0;
-let dragDirect;
-
-// Drag event listeners
-mainEl.addEventListener('mousedown', e => {
-    startX = e.clientX
-    startY = e.clientY
-})
-
-mainEl.addEventListener('dragover', e => {
+function dragoverHandler(e, divListData) {
     dragPerX = (startX - e.clientX) / window.innerWidth * -100;
     dragPerY = (startY - e.clientY) / document.body.offsetHeight * -100;
 
@@ -329,16 +315,15 @@ mainEl.addEventListener('dragover', e => {
         mainEl.style.transform = `translateX(${(dragPerX+1)}vw)`;
     }
     if (dragDirect === 'vertical') {
-        horiPage[currentActivePage].style.top = `${(dragPerY+1)}vh`;
+        divListData[currentActivePage].style.top = `${(dragPerY+1)}vh`;
     }
 
     mainEl.style.transition = 'none';
-});
+}
 
+function dragendHandler(e, divListData, cateData, slideControlData) {
+    const contents = divListData[currentActivePage].children;
 
-
-mainEl.addEventListener("dragend", e => {
-    const contents = getColumnElem();
     mainEl.style.transform = `translateX(0vw)`;
     mainEl.style.transition = 'transform 1s ease';
 
@@ -359,15 +344,27 @@ mainEl.addEventListener("dragend", e => {
     // Slide to its direction
     if (dragDirect === 'horizontal') {
         if (dragPerX < 0) {
-            slideRight();
+            slideRight(divListData, cateData, slideControlData);
 
         } else if (dragPerX > 0) {
-            slideLeft();
+            slideLeft(divListData, cateData, slideControlData);
         }
     }
 
     if (dragDirect === 'vertical') {
-        moveToSelectedSlide(wheel);
-        showCurrentSlide(wheel);
+        moveToSelectedSlide(wheel, divListData);
+        showCurrentSlide(wheel, slideControlData);
     }
-})
+}
+
+function resizeHandler() {
+    const contents = document.querySelectorAll('#main-img');
+    for (i of contents) {
+        const imgNum = i.parentElement.id;
+        if (window.innerWidth <= 970) {
+            i.src = `images/portrait_${imgNum}.jpg`
+        } else if (window.innerWidth > 970) {
+            i.src = `images/landscape_${imgNum}.jpg`
+        }
+    }
+}
