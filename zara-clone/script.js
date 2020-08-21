@@ -5,6 +5,8 @@ const mainEl = document.getElementById('contents');
 const logoEl = document.getElementById('logo');
 const cartLogoEl = document.getElementById('cart');
 const slideListCon = document.getElementById('slide-control');
+const leftBtn = document.getElementById('left');
+const rightBtn = document.getElementById('right');
 
 
 // Get main data from data.json 
@@ -29,21 +31,31 @@ async function init() {
 
     // show inital active page
     setInitActivePage(divListData);
+    showSlideControlIcon(slideControlData);
 
     // Set Event listeners
-    setEventByMainData(divListData, cateData);
+    setEventByMainData(divListData, cateData, slideControlData);
 
 }
 
-function setEventByMainData(divListData, cateData) {
-    const leftBtn = document.getElementById('left');
-    const rightBtn = document.getElementById('right');
+function setEventByMainData(divListData, cateData, slideControlData) {
 
-    // Horizontal button click event 
-    rightBtn.addEventListener('click', () => slideRight(divListData, cateData, leftBtn, rightBtn))
-    leftBtn.addEventListener('click', () => slideLeft(divListData, cateData, leftBtn, rightBtn))
+    // Horizontal slide button click event 
+    rightBtn.addEventListener('click', () => slideRight(divListData, cateData, slideControlData))
+    leftBtn.addEventListener('click', () => slideLeft(divListData, cateData, slideControlData))
+
+    // Vertical slide mousewheel event
+    window.addEventListener('mousewheel', (e) => slideVertical(e, divListData, slideControlData));
+
+    // Vertical slide control icon click event 
+    slideListCon.addEventListener('click', e => i(e, slideControlData, divListData));
+
+    // Navigation display event listener
+    menuIcon.addEventListener('mouseover', () => menuEl.classList.add('show'));
+    menuEl.addEventListener('mouseleave', () => menuEl.classList.remove('show'));
 }
 
+// show inital active page
 function setInitActivePage(divListData) {
     divListData[currentActivePage].className = 'contents-column active';
     divListData[currentActivePage - 1].className = 'contents-column left';
@@ -108,7 +120,7 @@ function ShowMainElem(mainData) {
 };
 
 // Slide horizontal
-function slideRight(divListData, cateData, leftBtn, rightBtn) {
+function slideRight(divListData, cateData, slideControlData) {
     divListData[currentActivePage].className = 'contents-column left';
 
     currentActivePage = currentActivePage + 1;
@@ -119,11 +131,11 @@ function slideRight(divListData, cateData, leftBtn, rightBtn) {
 
     divListData[currentActivePage].className = 'contents-column active';
 
-    // showSlideList();
-    ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn);
+    showSlideControlIcon(slideControlData);
+    ShowhoriSlideBtn(divListData, cateData);
 }
 
-function slideLeft(divListData, cateData, leftBtn, rightBtn) {
+function slideLeft(divListData, cateData, slideControlData) {
     divListData[currentActivePage].className = 'contents-column right';
 
     currentActivePage = currentActivePage - 1;
@@ -133,19 +145,16 @@ function slideLeft(divListData, cateData, leftBtn, rightBtn) {
     }
     divListData[currentActivePage].className = 'contents-column active';
 
-    // showSlideList();
-    ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn);
+    showSlideControlIcon(slideControlData);
+    ShowhoriSlideBtn(divListData, cateData);
 }
 
-
-
-
 // Show horizontal slide button by sliding page. 
-function ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn) {
+function ShowhoriSlideBtn(divListData, cateData) {
 
     divListData[currentActivePage].className = 'contents-column active';
 
-    // Button display 
+    // Change Button display 
     if (divListData[currentActivePage].className === 'contents-column active' &&
         currentActivePage === divListData.length - 1) {
         rightBtn.style.display = 'none'
@@ -160,12 +169,12 @@ function ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn) {
 
     }
 
-    // Button inner text 
-    getBtnText(cateData, leftBtn, rightBtn);
+    // Change Button inner text 
+    getBtnText(cateData);
 }
 
-
-function getBtnText(cateData, leftBtn, rightBtn) {
+// Change Button inner text 
+function getBtnText(cateData) {
     if (leftBtn.style.display !== 'none') {
         leftBtn.innerHTML = `${cateData[currentActivePage -1].toUpperCase()}<i class="fas fa-chevron-left"></i>`;
     }
@@ -175,10 +184,8 @@ function getBtnText(cateData, leftBtn, rightBtn) {
 }
 
 // Slide vertical
-// Slide down event listener
-
-window.addEventListener('mousewheel', e => {
-    const contents = getColumnElem();
+function slideVertical(e, divListData, slideControlData) {
+    const contents = divListData[currentActivePage].children;
 
     if (e.wheelDelta > 0) {
         wheel--;
@@ -192,13 +199,13 @@ window.addEventListener('mousewheel', e => {
         wheel = contents.length - 1;
     }
 
-    moveToSelectedSlide(wheel);
+    moveToSelectedSlide(wheel, divListData);
     changeMainColor();
-    showCurrentSlide(wheel);
-});
+    showCurrentSlide(wheel, slideControlData);
+}
 
 // Slide click event listener
-slideListCon.addEventListener('click', e => {
+function i(e, slideControlData, divListData) {
     const parent = e.target.parentNode;
     if (!parent.classList.contains('slide-control')) {
         return;
@@ -208,24 +215,48 @@ slideListCon.addEventListener('click', e => {
         listItem.classList.remove('on');
         if (listItem === e.target) {
             e.target.classList.add('on');
-            moveToSelectedSlide(index);
+            moveToSelectedSlide(index, divListData);
         }
     });
 
-})
-
-
-
-// Move to selected slide 
-function moveToSelectedSlide(index) {
-    horiPage[currentActivePage].style.top = `-${100*index}vh`
 }
 
-// Show current list in slide control list
-showSlideList();
+// Create list item data 
+function getListItem(divListData) {
+    const ListItems = new Array();
 
+    for (column of divListData) {
+        const columnChildEls = column.children;
+        const columnList = new Array();
 
-function showCurrentSlide(index) {
+        for (let i = 0; i < columnChildEls.length; i++) {
+            const listEl = document.createElement('li');
+            columnList.push(listEl);
+        }
+
+        columnList[0].classList.add('on');
+        ListItems.push(columnList);
+    }
+    return ListItems;
+}
+
+// Show slide control list in DOM
+function showSlideControlIcon(slideControlData) {
+    const nowColumn = slideControlData[currentActivePage];
+    slideListCon.innerHTML = '';
+
+    nowColumn.forEach(list => {
+        slideListCon.appendChild(list);
+    })
+}
+
+// Move to selected slide 
+function moveToSelectedSlide(index, divListData) {
+    divListData[currentActivePage].style.top = `-${100*index}vh`
+}
+
+// Show current active list icon in slide control list
+function showCurrentSlide(index, slideControlData) {
     const nowColumn = slideControlData[currentActivePage];
     for (let slide in nowColumn) {
         if (Number(slide) === Number(index)) {
@@ -252,42 +283,6 @@ function changeMainColor() {
     }
 }
 
-
-
-// Show slide control list in DOM
-function showSlideList() {
-    const nowColumn = slideControlData[currentActivePage];
-    slideListCon.innerHTML = '';
-
-    nowColumn.forEach(list => {
-        slideListCon.appendChild(list);
-    })
-}
-
-// Create list item data 
-function getListItem(divListData) {
-    const ListItems = new Array();
-
-    for (column of divListData) {
-        const columnChildEls = column.children;
-        const columnList = new Array();
-
-        for (let i = 0; i < columnChildEls.length; i++) {
-            const listEl = document.createElement('li');
-            columnList.push(listEl);
-        }
-
-        columnList[0].classList.add('on');
-        ListItems.push(columnList);
-    }
-    return ListItems;
-}
-
-// Get slides of each column
-function getColumnElem() {
-    return horiPage[currentActivePage].children;
-}
-
 // Change image by window size
 window.addEventListener('resize', () => {
     const contents = document.querySelectorAll('#main-img');
@@ -302,13 +297,7 @@ window.addEventListener('resize', () => {
 
 })
 
-// Navigation show event listener
-menuIcon.addEventListener('mouseover', () => {
-    menuEl.classList.add('show');
-});
-menuEl.addEventListener('mouseleave', () => {
-    menuEl.classList.remove('show');
-});
+
 
 // Slide move by dragging the page
 let startX = 0;
