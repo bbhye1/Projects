@@ -7,93 +7,80 @@ const cartLogoEl = document.getElementById('cart');
 const slideListCon = document.getElementById('slide-control');
 
 
-const mainData = {
-    man: [{
-            title: 'NEW IN',
-            contents: "Explore this week's latest menswear pieces of the season curated for you <br>Autumn Winter Man Collection",
-            number: 5
-        }, {
-            title: 'COLLECTION',
-            contents: "Discover this week's pieces from our latest collection <br>Autumn Winter Man Collection",
-            number: 6
-        }, {
-            title: 'SHOES & BABS',
-            contents: "Explore the new collection of Shoes & Bags <br>Autumn Winter Man Collection",
-            number: 7
-        },
-        {
-            title: 'JOIN LIFE',
-            contents: "Working on different programmes to reduce the environmental impact of our products",
-            number: 8
-        }
-    ],
-    woman: [{
-            title: 'NEW IN',
-            contents: "Explore this week's latest womenswear pieces of the season curated for you<br>Autumn Winter Woman Collection",
-            number: 1
-        }, {
-            title: 'COLLECTION',
-            contents: "Discover this week's pieces from our latest collection <br>Autumn Winter woman Collection",
-            number: 2
-        }, {
-            title: 'SHOES & BABS',
-            contents: "Explore the new collection of Shoes & Bags <br>Autumn Winter woman Collection",
-            number: 3
-        },
-        {
-            title: 'JOIN LIFE',
-            contents: "Working on different programmes to reduce the environmental impact of our products",
-            number: 4
-        }
-    ],
+// Get main data from data.json 
+async function getDataFromJson() {
+    const response = await fetch('data/data.json');
+    const data = await response.json();
+    const wholeData = data.data[0];
+    return wholeData;
+}
 
-    kids: [{
-            title: 'NEW IN',
-            contents: "Explore this week's latest kidswear pieces of the season curated for you<br>Autumn Winter kids Collection",
-            video: "video/fashion_sm.mp4"
-        }, {
-            title: 'COLLECTION',
-            contents: "Discover this week's pieces from our latest collection <br>Autumn Winter kids Collection",
-            number: 9
-        }, {
-            title: 'SHOES & BABS',
-            contents: "Explore the new collection of Shoes & Bags <br>Autumn Winter kids Collection",
-            number: 10
+// Reset data
+async function init() {
+    // Call data 
+    const data = await getDataFromJson();
+    const mainData = data.mainData;
+    const menuData = data.menu;
 
-        },
-        {
-            title: 'JOIN LIFE',
-            contents: "Working on different programmes to reduce the environmental impact of our products",
-            number: 11
+    // Reset data and display in DOM
+    const divListData = ShowMainElem(mainData);
+    const cateData = getCateDataFromMain(mainData);
+    let slideControlData = getListItem(divListData);
 
-        }
-    ]
-};
+    // show inital active page
+    setInitActivePage(divListData);
+
+    // Set Event listeners
+    setEventByMainData(divListData, cateData);
+
+}
+
+function setEventByMainData(divListData, cateData) {
+    const leftBtn = document.getElementById('left');
+    const rightBtn = document.getElementById('right');
+
+    // Horizontal button click event 
+    rightBtn.addEventListener('click', () => slideRight(divListData, cateData, leftBtn, rightBtn))
+    leftBtn.addEventListener('click', () => slideLeft(divListData, cateData, leftBtn, rightBtn))
+}
+
+function setInitActivePage(divListData) {
+    divListData[currentActivePage].className = 'contents-column active';
+    divListData[currentActivePage - 1].className = 'contents-column left';
+    divListData[currentActivePage + 1].className = 'contents-column right';
+}
+
+init();
 
 let wheel = 0;
 let currentActivePage = 1;
 
-// Get data
-const cateData = [];
-const divListData = [];
-let slideControlData = [];
-
-for (let i in mainData) {
-    cateData.push(i);
+// get category data from mainData
+function getCateDataFromMain(mainData) {
+    const dataArr = new Array();
+    for (let subject in mainData) {
+        dataArr.push(subject);
+    }
+    return dataArr;
 }
 
 // Display main contents in DOM
-function ShowMainElem() {
+function ShowMainElem(mainData) {
+    const divList = new Array();
+
     // Create columns in DOM
     for (let column in mainData) {
+        const columnItem = mainData[column];
+
         const columnEl = document.createElement('div');
         columnEl.classList.add('contents-column');
-        const columnItemList = [];
+
         // Create contents in column
-        mainData[column].forEach(content => {
+        columnItem.forEach(content => {
             const contentEl = document.createElement('div');
             contentEl.classList.add('content');
             contentEl.setAttribute('draggable', true);
+
             if (content.video) {
                 contentEl.innerHTML = `
                         <video id="main-video" src="${content.video}" autoplay loop /></video>
@@ -113,87 +100,74 @@ function ShowMainElem() {
                     `
             }
             columnEl.appendChild(contentEl);
-            columnItemList.push(contentEl);
         });
         mainEl.appendChild(columnEl);
-        divListData.push(columnItemList);
+        divList.push(columnEl);
     }
+    return divList;
 };
 
-ShowMainElem();
-getListItem();
-
-// Button click
-
-const horiPage = document.querySelectorAll('.contents-column');
-const leftBtn = document.getElementById('left');
-const rightBtn = document.getElementById('right');
-
-// Inital active page
-horiPage[currentActivePage].className = 'contents-column active';
-horiPage[currentActivePage - 1].className = 'contents-column left';
-horiPage[currentActivePage + 1].className = 'contents-column right';
-
 // Slide horizontal
-function slideRight() {
-    horiPage[currentActivePage].className = 'contents-column left';
+function slideRight(divListData, cateData, leftBtn, rightBtn) {
+    divListData[currentActivePage].className = 'contents-column left';
 
     currentActivePage = currentActivePage + 1;
 
-    if (currentActivePage >= horiPage.length) {
-        currentActivePage = horiPage.length - 1
+    if (currentActivePage >= divListData.length) {
+        currentActivePage = divListData.length - 1
     }
 
-    horiPage[currentActivePage].className = 'contents-column active';
+    divListData[currentActivePage].className = 'contents-column active';
 
-    showSlideList();
-    ShowhoriSlideBtn();
-    getBtnText();
+    // showSlideList();
+    ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn);
 }
 
-function slideLeft() {
-    horiPage[currentActivePage].className = 'contents-column right';
+function slideLeft(divListData, cateData, leftBtn, rightBtn) {
+    divListData[currentActivePage].className = 'contents-column right';
 
     currentActivePage = currentActivePage - 1;
 
     if (currentActivePage < 0) {
         currentActivePage = 0
     }
-    horiPage[currentActivePage].className = 'contents-column active';
+    divListData[currentActivePage].className = 'contents-column active';
 
-    showSlideList();
-    ShowhoriSlideBtn();
-    getBtnText();
+    // showSlideList();
+    ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn);
 }
 
 
-// Right button click event 
-rightBtn.addEventListener('click', slideRight)
 
-// Left button click event 
-leftBtn.addEventListener('click', slideLeft)
 
 // Show horizontal slide button by sliding page. 
-function ShowhoriSlideBtn() {
-    horiPage[currentActivePage].className = 'contents-column active';
+function ShowhoriSlideBtn(divListData, cateData, leftBtn, rightBtn) {
+
+    divListData[currentActivePage].className = 'contents-column active';
 
     // Button display 
-    if (horiPage[currentActivePage].className === 'contents-column active' &&
-        currentActivePage === horiPage.length - 1) {
+    if (divListData[currentActivePage].className === 'contents-column active' &&
+        currentActivePage === divListData.length - 1) {
         rightBtn.style.display = 'none'
-    } else if (horiPage[currentActivePage].className === 'contents-column active' &&
+
+    } else if (divListData[currentActivePage].className === 'contents-column active' &&
         currentActivePage === 0) {
         leftBtn.style.display = 'none'
+
     } else {
         rightBtn.style.display = 'block'
         leftBtn.style.display = 'block'
+
     }
+
+    // Button inner text 
+    getBtnText(cateData, leftBtn, rightBtn);
 }
 
-// Button inner text 
-function getBtnText() {
+
+function getBtnText(cateData, leftBtn, rightBtn) {
     if (leftBtn.style.display !== 'none') {
-        leftBtn.innerHTML = `${cateData[currentActivePage - 1].toUpperCase()}<i class="fas fa-chevron-left"></i>`;
+        leftBtn.innerHTML = `${cateData[currentActivePage -1].toUpperCase()}<i class="fas fa-chevron-left"></i>`;
     }
     if (rightBtn.style.display !== 'none') {
         rightBtn.innerHTML = `<i class="fas fa-chevron-right"></i>${cateData[currentActivePage +1].toUpperCase()}`;
@@ -291,17 +265,22 @@ function showSlideList() {
 }
 
 // Create list item data 
-function getListItem() {
+function getListItem(divListData) {
+    const ListItems = new Array();
+
     for (column of divListData) {
-        const columnList = [];
-        column.forEach(() => {
+        const columnChildEls = column.children;
+        const columnList = new Array();
+
+        for (let i = 0; i < columnChildEls.length; i++) {
             const listEl = document.createElement('li');
             columnList.push(listEl);
-        })
-        columnList[0].classList.add('on');
-        slideControlData.push(columnList);
+        }
 
+        columnList[0].classList.add('on');
+        ListItems.push(columnList);
     }
+    return ListItems;
 }
 
 // Get slides of each column
@@ -314,7 +293,6 @@ window.addEventListener('resize', () => {
     const contents = document.querySelectorAll('#main-img');
     for (i of contents) {
         const imgNum = i.parentElement.id;
-        console.log(i.src);
         if (window.innerWidth <= 970) {
             i.src = `images/portrait_${imgNum}.jpg`
         } else if (window.innerWidth > 970) {

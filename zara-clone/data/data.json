@@ -1,0 +1,75 @@
+{
+    "data": [{
+        "mainData": {
+            "man": [{
+                    "title": "NEW IN",
+                    "contents": "Explore this week's latest menswear pieces of the season curated for you <br>Autumn Winter Man Collection",
+                    "number": 5
+                }, {
+                    "title": "COLLECTION",
+                    "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter Man Collection",
+                    "number": 6
+                }, {
+                    "title": "SHOES & BAGS",
+                    "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter Man Collection",
+                    "number": 7
+                },
+                {
+                    "title": "JOIN LIFE",
+                    "contents": "Working on different programmes to reduce the environmental impact of our products",
+                    "number": 8
+                }
+            ],
+            "woman": [{
+                    "title": "NEW IN",
+                    "contents": "Explore this week's latest womenswear pieces of the season curated for you<br>Autumn Winter Woman Collection",
+                    "number": 1
+                }, {
+                    "title": "COLLECTION",
+                    "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter woman Collection",
+                    "number": 2
+                }, {
+                    "title": "SHOES & BAGS",
+                    "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter woman Collection",
+                    "number": 3
+                },
+                {
+                    "title": "JOIN LIFE",
+                    "contents": "Working on different programmes to reduce the environmental impact of our products",
+                    "number": 4
+                }
+            ],
+
+            "kids": [{
+                    "title": " NEW IN",
+                    "contents": "Explore this week's latest kidswear pieces of the season curated for you<br>Autumn Winter kids Collection",
+                    "video": "video/fashion_sm.mp4"
+                }, {
+                    "title": "COLLECTION",
+                    "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter kids Collection",
+                    "number": 9
+                }, {
+                    "title": "SHOES & BAGS",
+                    "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter kids Collection",
+                    "number": 10
+
+                },
+                {
+                    "title": "JOIN LIFE",
+                    "contents": "Working on different programmes to reduce the environmental impact of our products",
+                    "number": 11
+
+                }
+            ]
+        },
+        "menu": [{
+            "woman": {},
+            "man": {},
+            "kids": {},
+            "home": {},
+            "zara-srpls": {},
+            "shoes&bags": {},
+            "join-life": {}
+        }]
+    }]
+}
