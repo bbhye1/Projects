@@ -2,72 +2,207 @@
     "data": [{
         "mainData": {
             "man": [{
-                    "title": "NEW IN",
-                    "contents": "Explore this week's latest menswear pieces of the season curated for you <br>Autumn Winter Man Collection",
-                    "number": 5
-                }, {
-                    "title": "COLLECTION",
-                    "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter Man Collection",
-                    "number": 6
-                }, {
-                    "title": "SHOES & BAGS",
-                    "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter Man Collection",
-                    "number": 7
-                },
-                {
-                    "title": "JOIN LIFE",
-                    "contents": "Working on different programmes to reduce the environmental impact of our products",
-                    "number": 8
-                }
-            ],
+                "title": "NEW IN",
+                "contents": "Explore this week's latest menswear pieces of the season curated for you <br>Autumn Winter Man Collection",
+                "number": 5
+            }, {
+                "title": "COLLECTION",
+                "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter Man Collection",
+                "number": 6
+            }, {
+                "title": "SHOES & BAGS",
+                "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter Man Collection",
+                "number": 7
+            }, {
+                "title": "JOIN LIFE",
+                "contents": "Working on different programmes to reduce the environmental impact of our products",
+                "number": 8
+            }],
             "woman": [{
-                    "title": "NEW IN",
-                    "contents": "Explore this week's latest womenswear pieces of the season curated for you<br>Autumn Winter Woman Collection",
-                    "number": 1
-                }, {
-                    "title": "COLLECTION",
-                    "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter woman Collection",
-                    "number": 2
-                }, {
-                    "title": "SHOES & BAGS",
-                    "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter woman Collection",
-                    "number": 3
-                },
-                {
-                    "title": "JOIN LIFE",
-                    "contents": "Working on different programmes to reduce the environmental impact of our products",
-                    "number": 4
-                }
-            ],
+                "title": "NEW IN",
+                "contents": "Explore this week's latest womenswear pieces of the season curated for you<br>Autumn Winter Woman Collection",
+                "number": 1
+            }, {
+                "title": "COLLECTION",
+                "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter woman Collection",
+                "number": 2
+            }, {
+                "title": "SHOES & BAGS",
+                "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter woman Collection",
+                "number": 3
+            }, {
+                "title": "JOIN LIFE",
+                "contents": "Working on different programmes to reduce the environmental impact of our products",
+                "number": 4
+            }],
 
             "kids": [{
-                    "title": " NEW IN",
-                    "contents": "Explore this week's latest kidswear pieces of the season curated for you<br>Autumn Winter kids Collection",
-                    "video": "video/fashion_sm.mp4"
-                }, {
-                    "title": "COLLECTION",
-                    "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter kids Collection",
-                    "number": 9
-                }, {
-                    "title": "SHOES & BAGS",
-                    "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter kids Collection",
-                    "number": 10
-
-                },
-                {
-                    "title": "JOIN LIFE",
-                    "contents": "Working on different programmes to reduce the environmental impact of our products",
-                    "number": 11
-
-                }
-            ]
+                "title": " NEW IN",
+                "contents": "Explore this week's latest kidswear pieces of the season curated for you<br>Autumn Winter kids Collection",
+                "video": "video/fashion_sm.mp4"
+            }, {
+                "title": "COLLECTION",
+                "contents": "Discover this week's pieces from our latest collection <br>Autumn Winter kids Collection",
+                "number": 9
+            }, {
+                "title": "SHOES & BAGS",
+                "contents": "Explore the new collection of Shoes & Bags <br>Autumn Winter kids Collection",
+                "number": 10
+            }, {
+                "title": "JOIN LIFE",
+                "contents": "Working on different programmes to reduce the environmental impact of our products",
+                "number": 11
+            }]
         },
         "menu": [{
-            "woman": {},
+            "woman": {
+                "new in": "",
+                "collection": [{
+                        "must have": ""
+                    },
+
+                    {
+                        "coats": ""
+                    },
+
+                    {
+                        "blazers | jackets": [
+                            "View all",
+                            "Jackets",
+                            "Blazers",
+                            "Waistcoats",
+                            "Trench Coats"
+                        ]
+                    },
+
+                    {
+                        "dresses | jumpsuits": [
+                            "View all",
+                            "Jumpsuits",
+                            "Short",
+                            "Midi",
+                            "Maxi"
+                        ]
+                    }, {
+                        "athelsure": ""
+                    }, {
+                        "shirts | tops": [
+                            "View All",
+                            "Shirts",
+                            "Blouses",
+                            "Tops",
+                            "Crop Tops"
+                        ]
+                    }, {
+                        "knitwear": [
+                            "View all",
+                            "Basics",
+                            "Cardigans",
+                            "Knit Tops",
+                            "Jersey",
+                            "Dresses"
+                        ]
+                    }, {
+                        "trousers": [
+                            "View all",
+                            "Smart",
+                            "Culottes",
+                            " Loose-fitting",
+                            "Joggers",
+                            "Leggings"
+                        ]
+                    }, {
+                        "jeans": [
+                            "View All",
+                            "High Waist",
+                            "Mid Waist",
+                            "Baggy",
+                            "Mom fit",
+                            "Skinny",
+                            "Straight-leg",
+                            "Flared"
+                        ]
+                    }, {
+                        "skrits": ["View All", "Mini", " Midi", "Denim"]
+                    }, {
+                        "t-shirts | swearshrits": [
+                            "View All",
+                            "Basics",
+                            "Sweatshirts",
+                            "Shoulder pads",
+                            "Collaboration",
+                            "Limitless Contour Collection",
+                            "Bodysuits",
+                            "Cropped",
+                            "Sleeveless",
+                            "Short Sleeve"
+                        ]
+                    }, {
+                        "shorts": ["View All", "Denim", "Skorts", "Bermuda Shorts"]
+                    }, {
+                        "shoes": [
+                            "View all",
+                            "Must Have",
+                            "Leather shoes",
+                            "Heeled sandals",
+                            "Flat sandals",
+                            "High-heels",
+                            "Flat shoes",
+                            "Boots | Ankle Boots",
+                            "Mules",
+                            "Trainers",
+                            "Special Prices"
+                        ]
+                    }, {
+                        "bags": [
+                            "View all",
+                            "Edited",
+                            "Leather bags",
+                            "Crossbody bags",
+                            "Shoulder bags",
+                            "Handbags",
+                            "Mini Bags",
+                            "Large bags | Backpacks",
+                            "Special Prices"
+                        ]
+                    }, {
+                        "accessories": [
+                            "View All",
+                            "Jewellery",
+                            "Belts",
+                            "Leather",
+                            "Scarves",
+                            "Hats | Headbands",
+                            "Beachwear | Swimwear"
+                        ]
+                    }, {
+                        "suits": ""
+                    }, {
+                        "co-ord sets": ""
+                    }, {
+                        "accecories": ["Perfumes", " Home Fragrances", "Cosmetics", "Candles"]
+                    }, {
+                        "special prices": ""
+                    }
+                ],
+                "zara-srpls": {
+                    "image": "images/zara-srpls-logo.png"
+                },
+                "sale": [
+                    "DRESSES",
+                    "TOPS",
+                    "BOTTOMS",
+                    "SHOES | BAGS",
+                    "ACCESSORIES | BEAUTY"
+                ]
+            },
+
             "man": {},
             "kids": {},
             "home": {},
-            "zara-srpls": {},
+            "zara-srpls": {
+                "image": "images/zara-srpls-logo.png"
+            },
             "shoes&bags": {},
             "join-life": {}
         }]
