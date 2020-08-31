@@ -24,6 +24,7 @@ body {
     right: 0;
     height: 50px;
     background: #fff;
+    z-index: 99;
 }
 
 .main-nav ul {
@@ -50,7 +51,7 @@ li.cart img {
 }
 
 .side-nav {
-    width: 60%;
+    width: 250px;
     height: 100%;
     background: #fff;
     position: fixed;
@@ -70,6 +71,7 @@ li.cart img {
 .side-nav.left-nav {
     left: 0;
     display: none;
+    z-index: 100;
 }
 
 .side-nav.left-nav .close-btn {
@@ -79,6 +81,7 @@ li.cart img {
 .side-nav.right-nav {
     right: 0;
     display: none;
+    z-index: 100;
 }
 
 .side-nav.right-nav .close-btn {
@@ -174,6 +177,9 @@ li.cart img {
     margin-bottom: 3em;
 }
 
+
+/* scroll section */
+
 .top-title {
     display: flex;
     flex-direction: row;
@@ -221,14 +227,23 @@ li.cart img {
     margin-top: 30vh;
 }
 
-h1.title {
+h1.title,
+p.title {
     position: fixed;
     margin-top: 0;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.scroll-section {
+h1.title {
+    top: 40%;
+}
+
+p.title {
+    top: 35%;
+}
+
+.scroll-section:not(#scroll-section-4) {
     margin-bottom: 35vh;
 }
 
@@ -244,8 +259,18 @@ h1.title {
     transform: translateX(-50%);
 }
 
-.sticy-elem {
+.sticky-elem {
+    display: none;
     position: fixed;
+}
+
+.main-elem {
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 4.5vw;
+    font-weight: bold;
 }
 
 .pocket-spring-elem {
@@ -256,17 +281,10 @@ h1.title {
 
 .pin {
     display: block;
-    height: 1.5px;
+    height: 1px;
     width: 20px;
     background: #000;
-    margin: 5rem 0;
-}
-
-.main-elem {
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 3.5vw;
+    margin: 3rem 0;
 }
 
 #scroll-section-2 h2 {
@@ -281,12 +299,9 @@ h1.title {
     margin-bottom: 1em;
 }
 
-#scroll-section-3 .sticy-elem {
-    left: 50%;
-    transform: translateX(-50%);
+.product-title-elem {
+    padding: 0 1rem;
     font-family: var(--title-font);
-    font-size: 5vw;
-    width: 70%;
 }
 
 .product-title-elem p {
@@ -295,11 +310,15 @@ h1.title {
     margin-top: 0.2rem;
 }
 
+.product-elem {
+    font-size: 1.7rem;
+    font-family: var(--title-font);
+    top: 40%;
+    left: 20%;
+}
+
 .more-elem {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -337,4 +356,63 @@ footer {
     height: 30vh;
     background: #222;
     color: #fff;
+}
+
+#show-scene-0 #scroll-section-0 .sticky-elem,
+#show-scene-1 #scroll-section-1 .sticky-elem,
+#show-scene-2 #scroll-section-2 .sticky-elem,
+#show-scene-3 #scroll-section-3 .sticky-elem,
+#show-scene-4 #scroll-section-4 .sticky-elem {
+    display: block;
+}
+
+@media(min-width:900px) {
+    .main-nav ul {
+        padding: 0 3em;
+    }
+    .title {
+        font-size: 10vw;
+    }
+    h1.title {
+        top: 30%;
+    }
+    p.title {
+        top: 20%;
+    }
+    .main-elem {
+        top: 50%;
+        font-size: 3vw;
+    }
+    #scroll-section-2 h2 {
+        font-size: 4vw;
+        padding: 0 20rem;
+        top: 30vh;
+        margin-top: 0;
+    }
+    .pocket-spring-elem {
+        width: 51%;
+        padding: 0 20rem;
+        top: 35vh;
+        font-size: 1.2rem;
+    }
+    .pin {
+        margin: 6rem 0;
+    }
+    #scroll-section-3 h2 {
+        font-size: 4vw;
+        margin-bottom: 1em;
+    }
+    .product-title-elem {
+        padding: 0 5vw;
+    }
+    .product-title-elem p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2rem;
+    }
+    .product-elem {
+        font-size: 3rem;
+        font-family: var(--title-font);
+        top: 40%;
+        left: 20%;
+    }
 }
