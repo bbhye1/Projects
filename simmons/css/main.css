@@ -69,8 +69,8 @@ li.cart img {
 }
 
 .side-nav.left-nav {
-    left: 0;
-    display: none;
+    left: -250px;
+    transition: left 0.5s;
     z-index: 100;
 }
 
@@ -79,8 +79,8 @@ li.cart img {
 }
 
 .side-nav.right-nav {
-    right: 0;
-    display: none;
+    right: -250px;
+    transition: right 0.5s;
     z-index: 100;
 }
 
