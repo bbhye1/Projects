@@ -23,6 +23,7 @@ body {
     left: 0;
     right: 0;
     height: 50px;
+    background: #fff;
 }
 
 .main-nav ul {
@@ -210,4 +211,130 @@ li.cart img {
     font-size: 1em;
     width: 70%;
     padding: 1em 0;
+}
+
+.title {
+    font-family: var(--title-font);
+    font-size: 13vw;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 30vh;
+}
+
+h1.title {
+    position: fixed;
+    margin-top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scroll-section {
+    margin-bottom: 35vh;
+}
+
+#scroll-section-0::after {
+    display: block;
+    content: '';
+    height: 4px;
+    width: 80%;
+    background: #000;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sticy-elem {
+    position: fixed;
+}
+
+.pocket-spring-elem {
+    width: 56%;
+    padding: 0 3rem;
+    top: 35vh;
+}
+
+.pin {
+    display: block;
+    height: 1.5px;
+    width: 20px;
+    background: #000;
+    margin: 5rem 0;
+}
+
+.main-elem {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 3.5vw;
+}
+
+#scroll-section-2 h2 {
+    font-size: 7vw;
+    padding: 0 3rem;
+    top: 30vh;
+    margin-top: 0;
+}
+
+#scroll-section-3 h2 {
+    font-size: 8vw;
+    margin-bottom: 1em;
+}
+
+#scroll-section-3 .sticy-elem {
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--title-font);
+    font-size: 5vw;
+    width: 70%;
+}
+
+.product-title-elem p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+}
+
+.more-elem {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.more-elem .home {
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.more {
+    position: relative;
+    width: 80%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transform: translateX(-50%);
+}
+
+.more img {
+    height: 100%;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 30vh;
+    background: #222;
+    color: #fff;
 }
