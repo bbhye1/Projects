@@ -177,9 +177,6 @@ li.cart img {
     margin-bottom: 3em;
 }
 
-
-/* scroll section */
-
 .top-title {
     display: flex;
     flex-direction: row;
@@ -267,6 +264,17 @@ p.title {
 
 .scroll-section:not(#scroll-section-4) {
     position: relative;
+    border: red 1px solid;
+}
+
+.main-elem {
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 4.5vw;
+    font-weight: bold;
+    opacity: 0;
 }
 
 .sticky-elem {
@@ -283,15 +291,6 @@ p.title {
     width: 85%;
     background: #fff;
     z-index: 150;
-}
-
-.main-elem {
-    top: 45%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 4.5vw;
-    font-weight: bold;
 }
 
 .pocket-spring-elem {
@@ -398,7 +397,7 @@ footer {
         top: 30%;
     }
     .main-elem {
-        top: 50%;
+        top: 60%;
         font-size: 3vw;
     }
     #scroll-section-2 h2 {
@@ -451,4 +450,22 @@ footer {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.canvas-wrap {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.canvas-wrap canvas {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
 }
