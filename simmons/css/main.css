@@ -297,12 +297,13 @@ p.title {
     width: 56%;
     padding: 0 3rem;
     top: 35vh;
+    opacity: 0;
 }
 
 .pin {
     display: block;
     height: 1px;
-    width: 20px;
+    width: 10px;
     background: #000;
     margin: 3rem 0;
 }
@@ -312,6 +313,7 @@ p.title {
     padding: 0 3rem;
     top: 30vh;
     margin-top: 0;
+    opacity: 0;
 }
 
 #scroll-section-3 h2 {
@@ -402,13 +404,13 @@ footer {
     }
     #scroll-section-2 h2 {
         font-size: 4vw;
-        padding: 0 20rem;
+        margin: 0 27rem;
         top: 30vh;
         margin-top: 0;
     }
     .pocket-spring-elem {
-        width: 51%;
-        padding: 0 20rem;
+        width: 27%;
+        margin: 0 27rem;
         top: 35vh;
         font-size: 1.2rem;
     }
@@ -468,4 +470,8 @@ footer {
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
+}
+
+#scroll-canvas-2 {
+    left: 50%;
 }

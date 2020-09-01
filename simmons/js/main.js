@@ -28,6 +28,7 @@
         scrollHeight: 0,
         objs: {
             scene: document.querySelector('#scroll-section-1'),
+            title: document.querySelector('#scroll-section-1 .title'),
             mainTextA: document.querySelector('.main-elem.a'),
             mainTextB: document.querySelector('.main-elem.b'),
             mainTextC: document.querySelector('.main-elem.c'),
@@ -39,7 +40,8 @@
             videoFrame: 370,
             videoSequence: [0, 369, { start: 0.2, end: 0.9 }],
             videoOpacityIn: [0, 1, { start: 0.1, end: 0.3 }],
-            videoOpacityOut: [1, 0, { start: 0.9, end: 1 }],
+            videoOpacityOut: [1, 0, { start: 0.9, end: 0.95 }],
+            titleOpacityOut: [1, 0, { start: 0.9, end: 1 }],
 
             mainTextAOpactiytIn: [0, 1, { start: 0.2, end: 0.3 }],
             mainTextBOpactiytIn: [0, 1, { start: 0.45, end: 0.55 }],
@@ -58,8 +60,34 @@
     }, {
         heightNum: 5,
         scrollHeight: 0,
-        objs: { scene: document.querySelector('#scroll-section-2'), },
-        values: {}
+        objs: {
+            scene: document.querySelector('#scroll-section-2'),
+            title: document.querySelector('#scroll-section-2 .title'),
+            text: document.querySelector('.pocket-spring-elem'),
+            pin: document.querySelector('.pin'),
+            canvas: document.querySelector('#scroll-canvas-2'),
+            context: document.querySelector('#scroll-canvas-2').getContext('2d'),
+            videoImages: [],
+        },
+        values: {
+            videoFrame: 428,
+            videoSequence: [0, 427, { start: 0.25, end: 0.6 }],
+            videoOpacityIn: [0, 1, { start: 0.2, end: 0.3 }],
+            videoOpacityOut: [1, 0, { start: 0.9, end: 0.95 }],
+            videoTranslateYOut: [0, -20, { start: 0.8, end: 0.9 }],
+
+            titleTranslateYIn: [20, 0, { start: 0.1, end: 0.2 }],
+            titleTranslateYOut: [0, -20, { start: 0.35, end: 0.4 }],
+            titleOpactiytIn: [0, 1, { start: 0.1, end: 0.2 }],
+            titleOpactiytOut: [1, 0, { start: 0.35, end: 0.4 }],
+
+            textTranslateYIn: [20, 0, { start: 0.15, end: 0.25 }],
+            textOpactiytIn: [0, 1, { start: 0.15, end: 0.25 }],
+
+            pinWidth: [10, 100, { start: 0.25, end: 0.35 }],
+
+
+        }
     }, {
         heightNum: 5,
         scrollHeight: 0,
@@ -84,6 +112,7 @@
         const widthRatio = window.innerWidth / 1920;
 
         sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${widthRatio})`;
+        sceneInfo[2].objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio*0.85})`;
 
     }
 
@@ -93,7 +122,7 @@
 
 
         // section-0 text
-        values.titleTop[2].start = (sceneInfo[currentScene].scrollHeight - (objs.titleBlack.offsetTop + objs.titleBlack.offsetHeight)) / sceneInfo[currentScene].scrollHeight;
+        values.titleTop[2].start = (sceneInfo[2].scrollHeight - (objs.titleBlack.offsetTop + objs.titleBlack.offsetHeight)) / sceneInfo[2].scrollHeight;
         values.titleHeight[2].start = values.titleTop[2].start;
         values.titleHeight[2].end = values.titleHeight[2].start + (objs.titleWhite.offsetHeight / sceneInfo[currentScene].scrollHeight);
         values.titleHeight[0] = objs.titleWhite.offsetHeight;
@@ -175,10 +204,42 @@
                 } else {
                     objs.mainTextC.style.opacity = calcValues(values.mainTextCOpactiytOut, currentYOffset);
                     objs.mainTextC.style.transform = `translate3d(-50%, ${calcValues(values.mainTextCTranslateYOut, currentYOffset)}px, 0)`;
+
+                    objs.title.style.opacity = calcValues(values.titleOpacityOut, currentYOffset);
+                    objs.title.style.transform = `translate3d(-50%, ${calcValues(values.mainTextCTranslateYOut, currentYOffset)}px, 0)`;
                 }
+                break;
+            case 2:
+                const sequenceIndex2 = Math.round(calcValues(values.videoSequence, currentYOffset));
+                const heightRatio = window.innerHeight / 1080;
+                const canvasVideoXPos1 = objs.canvas.offsetWidth * heightRatio * 0.85;
+                objs.context.drawImage(objs.videoImages[sequenceIndex2], canvasVideoXPos1, 0);
+
+
+
+
+                if (scrollRatio <= 0.3) {
+                    objs.title.style.opacity = calcValues(values.titleOpactiytIn, currentYOffset);
+                    objs.text.style.opacity = calcValues(values.textOpactiytIn, currentYOffset);
+                    objs.title.style.transform = `translateY(${calcValues(values.titleTranslateYIn, currentYOffset)}px)`;
+                    objs.text.style.transform = `translateY(${calcValues(values.textTranslateYIn, currentYOffset)}px)`;
+                    objs.pin.style.width = `${calcValues(values.pinWidth, currentYOffset)}px`;
+
+                    objs.canvas.style.opacity = calcValues(values.videoOpacityIn, currentYOffset);
+                } else {
+                    objs.title.style.opacity = calcValues(values.titleOpactiytOut, currentYOffset);
+                    objs.text.style.opacity = calcValues(values.titleOpactiytOut, currentYOffset);
+                    objs.title.style.transform = `translateY(${calcValues(values.titleTranslateYOut, currentYOffset)}px)`;
+                    objs.text.style.transform = `translateY(${calcValues(values.titleTranslateYOut, currentYOffset)}px)`;
+                    objs.pin.style.width = `${calcValues(values.pinWidth, currentYOffset)}px`;
+
+                    objs.canvas.style.opacity = calcValues(values.videoOpacityOut, currentYOffset);
+                }
+
                 break;
         }
     }
+
 
     function drawCanvasImages() {
         for (let i = 0; i < sceneInfo[1].values.videoFrame; i++) {
@@ -186,6 +247,13 @@
             image.src = `../video/001/${i+1}.jpg`;
             sceneInfo[1].objs.videoImages.push(image);
         }
+
+        for (let i = 0; i < sceneInfo[2].values.videoFrame; i++) {
+            const image = new Image();
+            image.src = `../video/003/${i+1}.jpg`;
+            sceneInfo[2].objs.videoImages.push(image);
+        }
+        console.log(sceneInfo[2].objs.videoImages);
     }
 
 
@@ -212,13 +280,24 @@
         return rv
     }
 
+
+    // EventListeners
     window.addEventListener('scroll', () => {
         scrollLoop();
         playAnimation();
     });
-    setLayout();
-    setInfoValues();
-    drawCanvasImages();
+
+    window.addEventListener('load', () => {
+        setLayout();
+        setInfoValues();
+        drawCanvasImages();
+
+
+    })
+    window.addEventListener('resize', () => {
+        setInfoValues();
+        drawCanvasImages();
+    })
 
     // Side navigetion display
     mainNav.addEventListener('click', (e) => {
