@@ -8,14 +8,20 @@
     let enterNewScene = false;
 
 
+
     const sceneInfo = [{
         heightNum: 1,
         scrollHeight: 0,
         objs: {
             scene: document.querySelector('#scroll-section-0'),
-            video: document.querySelector('#scroll-section-0-video')
+            videoContainer: document.querySelector('.video-wrap'),
+            titleBlack: document.querySelector('.title-wrap-black'),
+            titleWhite: document.querySelector('.title-wrap-white'),
         },
-        valuse: {
+        values: {
+            videoScale: [1, 0.95, { start: 0, end: 0.1 }],
+            titleTop: [35, 30, { start: 0, end: 1 }],
+            titleHeight: [0, 0, { start: 0, end: 1 }],
 
         }
     }, {
@@ -44,11 +50,22 @@
         for (let i = 0; i < sceneInfo.length; i++) {
             sceneInfo[i].scrollHeight = window.innerHeight * sceneInfo[i].heightNum;
             sceneInfo[i].objs.scene.style.height = `${sceneInfo[i].scrollHeight}px`;
-
         }
-    }
-    setLayout();
 
+    }
+
+    function setInfoValues() {
+        const objs = sceneInfo[currentScene].objs;
+        const values = sceneInfo[currentScene].values;
+
+
+        // section-0 text
+        values.titleTop[2].start = (sceneInfo[currentScene].scrollHeight - (objs.titleBlack.offsetTop + objs.titleBlack.offsetHeight)) / sceneInfo[currentScene].scrollHeight;
+        values.titleHeight[2].start = values.titleTop[2].start;
+        values.titleHeight[2].end = values.titleHeight[2].start + (objs.titleWhite.offsetHeight / sceneInfo[currentScene].scrollHeight);
+        values.titleHeight[0] = objs.titleWhite.offsetHeight;
+
+    }
 
 
 
@@ -79,9 +96,53 @@
         if (enterNewScene) return;
     }
 
+    function playAnimation() {
+        const objs = sceneInfo[currentScene].objs;
+        const values = sceneInfo[currentScene].values;
+        const currentYOffset = YOffset - prevScrollHeight;
 
-    window.addEventListener('scroll', scrollLoop);
+        switch (currentScene) {
+            case 0:
+                objs.videoContainer.style.transform = `translateX(-50%) scale(${calcValues(values.videoScale, currentYOffset)})`
 
+                objs.titleBlack.style.top = `${calcValues(values.titleTop, currentYOffset)}%`
+                objs.titleWhite.style.top = `${calcValues(values.titleTop, currentYOffset)}%`
+                objs.titleWhite.style.height = `${calcValues(values.titleHeight, currentYOffset)}px`
+
+                break;
+        }
+    }
+
+
+
+    function calcValues(values, currentYOffset) {
+        let rv;
+        const scrollHeight = sceneInfo[currentScene].scrollHeight;
+        const scrollRatio = currentYOffset / scrollHeight;
+
+        if (values[2]) {
+            const partScrollStart = values[2].start * scrollHeight;
+            const partScrollEnd = values[2].end * scrollHeight;
+            const partScrollHeight = partScrollEnd - partScrollStart;
+            if (currentYOffset >= partScrollStart && currentYOffset <= partScrollEnd) {
+                rv = (currentYOffset - partScrollStart) / partScrollHeight * (values[1] - values[0]) + values[0];
+            } else if (currentYOffset < partScrollStart) {
+                rv = values[0];
+            } else if (currentYOffset > partScrollEnd) {
+                rv = values[1]
+            }
+        } else {
+            rv = scrollRatio * (values[1] - values[0]) + values[0];
+        }
+        return rv
+    }
+
+    window.addEventListener('scroll', () => {
+        scrollLoop();
+        playAnimation();
+    });
+    setLayout();
+    setInfoValues();
 
     // Side navigetion display
     mainNav.addEventListener('click', (e) => {
