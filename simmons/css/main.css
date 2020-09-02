@@ -403,13 +403,13 @@ footer {
     }
     #scroll-section-2 h2 {
         font-size: 4vw;
-        margin: 0 27rem;
+        margin: 0 16vw;
         top: 30vh;
         margin-top: 0;
     }
     .pocket-spring-elem {
         width: 27%;
-        margin: 0 27rem;
+        margin: 0 16vw;
         top: 35vh;
         font-size: 1.2rem;
     }
@@ -471,6 +471,13 @@ footer {
     opacity: 0;
 }
 
-#scroll-canvas-2 {
+#scroll-canvas-2-1 {
     left: 50%;
+    transform-origin: center;
+    transform: translateX(0);
+}
+
+#scroll-canvas-2-2 {
+    opacity: 1;
+    z-index: 5;
 }
