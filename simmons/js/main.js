@@ -137,11 +137,16 @@
             messageBOpacityOut: [1, 0, { start: 0.6, end: 0.65 }],
             messageCOpacityOut: [1, 0, { start: 0.75, end: 0.8 }],
             messageDOpacityOut: [1, 0, { start: 0.9, end: 0.95 }],
+
+
         }
     }, {
-        heightNum: 1,
+        heightNum: 0,
         scrollHeight: 0,
-        objs: { scene: document.querySelector('#scroll-section-4'), },
+        objs: {
+            scene: document.querySelector('#scroll-section-4'),
+            moreElem: document.querySelector('.more-elem'),
+        },
         values: {}
     }, ]
 
@@ -317,8 +322,6 @@
                         objs.canvasImages[3],
                         0, calcValues(values.drawImage4, currentYOffset), 1924, values.drawImage4[0] - calcValues(values.drawImage4, currentYOffset),
                         0, calcValues(values.drawImage4, currentYOffset), 1924, values.drawImage4[0] - calcValues(values.drawImage4, currentYOffset));
-
-                    objs.canvas.style.opacity = calcValues(values.drawImageOpacityOut, currentYOffset);
                 }
 
                 if (scrollRatio <= 0.15) {
@@ -349,8 +352,21 @@
                 } else {
                     objs.messageD.style.opacity = calcValues(values.messageDOpacityOut, currentYOffset);
                 }
-                break;
 
+                if (scrollRatio > 0.85) {
+                    sceneInfo[4].objs.moreElem.classList.add('sticky-elem');
+                    sceneInfo[4].objs.moreElem.style.animation = `more-elem-ani 0.6s ease`;
+                    sceneInfo[4].objs.moreElem.style.transform = `translateY(0)`;
+                    sceneInfo[4].objs.moreElem.style.animationPlayState = 'running';
+                    return;
+                } else {
+                    sceneInfo[4].objs.moreElem.classList.add('sticky-elem');
+                    sceneInfo[4].objs.moreElem.style.animation = 'more-elem-reverse-ani 0.6s ease';
+                    sceneInfo[4].objs.moreElem.style.transform = `translateY(100%)`;
+                    sceneInfo[4].objs.moreElem.style.animationPlayState = 'running';
+                    return;
+                }
+                break;
 
         }
     }
