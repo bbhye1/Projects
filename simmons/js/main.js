@@ -111,45 +111,50 @@
         const heightRatio = window.innerHeight / 1080;
         const widthRatio = window.innerWidth / 1920;
 
-        sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${widthRatio})`;
-        sceneInfo[2].objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio*0.85})`;
+        if (window.innerHeight > window.innerWidth) {
+            sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio})`;
+            sceneInfo[2].objs.canvas.style.transform = `translateX(-50%) scale(${widthRatio*0.85})`;
+
+        } else {
+            sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${widthRatio})`;
+            sceneInfo[2].objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio*0.85})`;
+        }
+
+
 
     }
 
     function setInfoValues() {
-        const objs = sceneInfo[currentScene].objs;
-        const values = sceneInfo[currentScene].values;
+        const objs = sceneInfo[0].objs;
+        const values = sceneInfo[0].values;
 
 
         // section-0 text
-        values.titleTop[2].start = (sceneInfo[2].scrollHeight - (objs.titleBlack.offsetTop + objs.titleBlack.offsetHeight)) / sceneInfo[2].scrollHeight;
+        values.titleTop[2].start = (sceneInfo[0].scrollHeight - (objs.titleBlack.offsetTop + objs.titleBlack.offsetHeight)) / sceneInfo[0].scrollHeight;
         values.titleHeight[2].start = values.titleTop[2].start;
         values.titleHeight[2].end = values.titleHeight[2].start + (objs.titleWhite.offsetHeight / sceneInfo[currentScene].scrollHeight);
         values.titleHeight[0] = objs.titleWhite.offsetHeight;
-
     }
 
 
-
     function scrollLoop() {
-        YOffset = window.pageYOffset;
+
         prevScrollHeight = 0;
         enterNewScene = false;
-
         for (let i = 0; i < currentScene; i++) {
             prevScrollHeight += sceneInfo[i].scrollHeight;
         }
 
         if (prevScrollHeight + sceneInfo[currentScene].scrollHeight < YOffset) {
             enterNewScene = true;
-            if (currentScene < sceneInfo.length - 1) {
-                currentScene++;
-            }
+
+            currentScene++;
+
             document.body.setAttribute('id', `show-scene-${currentScene}`);
         }
         if (prevScrollHeight > YOffset) {
             enterNewScene = true;
-            if (currentScene === 0) return;
+            if (currentScene < 0) return;
             currentScene--;
             document.body.setAttribute('id', `show-scene-${currentScene}`);
         }
@@ -174,6 +179,7 @@
 
                 break;
             case 1:
+                if (enterNewScene) return;
                 const sequenceIndex = Math.round(calcValues(values.videoSequence, currentYOffset));
                 objs.context.drawImage(objs.videoImages[sequenceIndex], 0, 0);
 
@@ -210,6 +216,7 @@
                 }
                 break;
             case 2:
+                if (enterNewScene) return;
                 const sequenceIndex2 = Math.round(calcValues(values.videoSequence, currentYOffset));
                 const heightRatio = window.innerHeight / 1080;
                 const canvasVideoXPos1 = objs.canvas.offsetWidth * heightRatio * 0.85;
@@ -253,7 +260,7 @@
             image.src = `../video/003/${i+1}.jpg`;
             sceneInfo[2].objs.videoImages.push(image);
         }
-        console.log(sceneInfo[2].objs.videoImages);
+
     }
 
 
@@ -283,21 +290,22 @@
 
     // EventListeners
     window.addEventListener('scroll', () => {
+        YOffset = window.pageYOffset;
+
         scrollLoop();
         playAnimation();
     });
 
     window.addEventListener('load', () => {
         setLayout();
-        setInfoValues();
         drawCanvasImages();
-
 
     })
     window.addEventListener('resize', () => {
-        setInfoValues();
         drawCanvasImages();
     })
+    setLayout();
+    setInfoValues();
 
     // Side navigetion display
     mainNav.addEventListener('click', (e) => {

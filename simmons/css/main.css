@@ -264,7 +264,6 @@ p.title {
 
 .scroll-section:not(#scroll-section-4) {
     position: relative;
-    border: red 1px solid;
 }
 
 .main-elem {
