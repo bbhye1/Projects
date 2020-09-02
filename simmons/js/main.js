@@ -81,7 +81,7 @@
             videoScaleOut: [0, 0, { start: 0.65, end: 0.7 }],
 
 
-            imageTranslateX: [-150, -50, { start: 0.7, end: 0.85 }],
+            imageTranslateX: [-200, -50, { start: 0.7, end: 0.85 }],
             imageScale: 0,
 
             titleTranslateYIn: [20, 0, { start: 0.05, end: 0.15 }],
@@ -97,14 +97,46 @@
 
         }
     }, {
-        heightNum: 5,
+        heightNum: 7,
         scrollHeight: 0,
         objs: {
             scene: document.querySelector('#scroll-section-3'),
             prevCanvas: document.querySelector('#scroll-canvas-2-2'),
+            canvas: document.querySelector('#scroll-canvas-3'),
+            context: document.querySelector('#scroll-canvas-3').getContext('2d'),
+            title: document.querySelector('.product-title-elem'),
+            messageA: document.querySelector('.product-elem.a'),
+            messageB: document.querySelector('.product-elem.b'),
+            messageC: document.querySelector('.product-elem.c'),
+            messageD: document.querySelector('.product-elem.d'),
+            canvasImages: [],
+
         },
         values: {
-            prevCanvasOpacity: [1, 0, { start: 0.1, end: 0.2 }],
+            imageCount: 4,
+            prevCanvasOpacity: [1, 0, { start: 0.2, end: 0.3 }],
+
+            titleOpacityIn: [0, 1, { start: 0, end: 0.1 }],
+            titleOpacityOut: [1, 0, { start: 0.2, end: 0.3 }],
+            titleTranslateYIn: [20, 0, { start: 0, end: 0.1 }],
+            titleTranslateYOut: [0, -20, { start: 0.2, end: 0.3 }],
+
+            drawImageTopIn: [100, 0, { start: 0.3, end: 0.35 }],
+            drawImageTopOut: [0, -30, { start: 0.85, end: 1 }],
+            drawImageOpacityOut: [1, 0, { start: 0.85, end: 0.95 }],
+
+            drawImage2: [0, 0, { start: 0.45, end: 0.5 }],
+            drawImage3: [0, 0, { start: 0.6, end: 0.65 }],
+            drawImage4: [0, 0, { start: 0.75, end: 0.8 }],
+
+            messageAOpacityIn: [0, 1, { start: 0.35, end: 0.4 }],
+            messageBOpacityIn: [0, 1, { start: 0.5, end: 0.55 }],
+            messageCOpacityIn: [0, 1, { start: 0.65, end: 0.7 }],
+            messageDOpacityIn: [0, 1, { start: 0.8, end: 0.85 }],
+            messageAOpacityOut: [1, 0, { start: 0.45, end: 0.5 }],
+            messageBOpacityOut: [1, 0, { start: 0.6, end: 0.65 }],
+            messageCOpacityOut: [1, 0, { start: 0.75, end: 0.8 }],
+            messageDOpacityOut: [1, 0, { start: 0.9, end: 0.95 }],
         }
     }, {
         heightNum: 1,
@@ -125,13 +157,22 @@
         const widthRatio = window.innerWidth / 1920;
         if (window.innerHeight > window.innerWidth) {
             sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio})`;
+
         } else {
             sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${widthRatio})`;
+
         }
         sceneInfo[2].objs.canvas1.style.transform = `scale(${heightRatio})`;
         sceneInfo[2].values.videoScaleOut[0] = heightRatio;
         sceneInfo[2].objs.canvas2.style.transform = ` translateX(-150%) scale(${heightRatio*0.85})`;
         sceneInfo[2].values.imageScale = heightRatio * 0.85;
+
+        sceneInfo[3].values.drawImage2[0] = sceneInfo[3].objs.canvas.offsetHeight;
+        sceneInfo[3].values.drawImage3[0] = sceneInfo[3].objs.canvas.offsetHeight;
+        sceneInfo[3].values.drawImage4[0] = sceneInfo[3].objs.canvas.offsetHeight;
+
+
+
 
     }
 
@@ -147,7 +188,6 @@
         values.titleHeight[0] = objs.titleWhite.offsetHeight;
 
     }
-
 
     function scrollLoop() {
 
@@ -233,6 +273,7 @@
                 values.videoScaleOut[1] = values.videoScaleOut[0] * 0.85;
                 objs.context1.drawImage(objs.videoImages1[sequenceIndex2], 0, 0);
                 objs.canvas1.style.transform = `scale(${calcValues(values.videoScaleOut, currentYOffset)})`;
+
                 objs.context2.drawImage(objs.canvas2Image[0], 0, 0);
                 objs.canvas2.style.transform = `translateX(${Math.round(calcValues(values.imageTranslateX,currentYOffset))}%) scale(${values.imageScale})`;
 
@@ -256,8 +297,61 @@
                 break;
             case 3:
                 if (enterNewScene) return;
+                const heightRatio = window.innerHeight / 1000;
                 objs.prevCanvas.style.opacity = calcValues(values.prevCanvasOpacity, currentYOffset);
+                objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio})`
+                objs.context.drawImage(objs.canvasImages[0], 0, 0);
+
+                objs.canvas.style.top = `${heightRatio*calcValues(values.drawImageTopIn,currentYOffset)}%`
+
+                if (scrollRatio >= 0.3) {
+                    objs.context.drawImage(
+                        objs.canvasImages[1],
+                        0, calcValues(values.drawImage2, currentYOffset), 1924, values.drawImage2[0] - calcValues(values.drawImage2, currentYOffset),
+                        0, calcValues(values.drawImage2, currentYOffset), 1924, values.drawImage2[0] - calcValues(values.drawImage2, currentYOffset));
+                    objs.context.drawImage(
+                        objs.canvasImages[2],
+                        0, calcValues(values.drawImage3, currentYOffset), 1924, values.drawImage3[0] - calcValues(values.drawImage3, currentYOffset),
+                        0, calcValues(values.drawImage3, currentYOffset), 1924, values.drawImage3[0] - calcValues(values.drawImage3, currentYOffset));
+                    objs.context.drawImage(
+                        objs.canvasImages[3],
+                        0, calcValues(values.drawImage4, currentYOffset), 1924, values.drawImage4[0] - calcValues(values.drawImage4, currentYOffset),
+                        0, calcValues(values.drawImage4, currentYOffset), 1924, values.drawImage4[0] - calcValues(values.drawImage4, currentYOffset));
+
+                    objs.canvas.style.opacity = calcValues(values.drawImageOpacityOut, currentYOffset);
+                }
+
+                if (scrollRatio <= 0.15) {
+                    objs.title.style.opacity = calcValues(values.titleOpacityIn, currentYOffset);
+                    objs.title.style.transform = `translateY(${ calcValues(values.titleTranslateYIn, currentYOffset)}px)`;
+                } else {
+                    objs.title.style.opacity = calcValues(values.titleOpacityOut, currentYOffset);
+                    objs.title.style.transform = `translateY(${ calcValues(values.titleTranslateYOut, currentYOffset)}px)`;
+                }
+
+                if (scrollRatio <= 0.42) {
+                    objs.messageA.style.opacity = calcValues(values.messageAOpacityIn, currentYOffset);
+                } else {
+                    objs.messageA.style.opacity = calcValues(values.messageAOpacityOut, currentYOffset);
+                }
+                if (scrollRatio <= 0.57) {
+                    objs.messageB.style.opacity = calcValues(values.messageBOpacityIn, currentYOffset);
+                } else {
+                    objs.messageB.style.opacity = calcValues(values.messageBOpacityOut, currentYOffset);
+                }
+                if (scrollRatio <= 0.73) {
+                    objs.messageC.style.opacity = calcValues(values.messageCOpacityIn, currentYOffset);
+                } else {
+                    objs.messageC.style.opacity = calcValues(values.messageCOpacityOut, currentYOffset);
+                }
+                if (scrollRatio <= 0.87) {
+                    objs.messageD.style.opacity = calcValues(values.messageDOpacityIn, currentYOffset);
+                } else {
+                    objs.messageD.style.opacity = calcValues(values.messageDOpacityOut, currentYOffset);
+                }
                 break;
+
+
         }
     }
 
@@ -273,6 +367,12 @@
             const image = new Image();
             image.src = `../video/003/${i+1}.jpg`;
             sceneInfo[2].objs.videoImages1.push(image);
+        }
+
+        for (let i = 0; i < sceneInfo[3].values.imageCount; i++) {
+            const image = new Image();
+            image.src = `../images/product_${i+1}.jpg`;
+            sceneInfo[3].objs.canvasImages.push(image);
         }
 
         const canvasImage = new Image();
@@ -320,7 +420,7 @@
     });
     window.addEventListener('resize', () => {
         setLayout();
-        drawCanvasImages();
+
     });
     setLayout();
     setInfoValues();
