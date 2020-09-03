@@ -499,12 +499,27 @@
     });
 
     window.addEventListener('load', () => {
+        document.body.classList.remove('before-load');
         setInfoValues();
         drawCanvasImages();
+        setLayout();
 
-        // document.body.setAttribute('id', `show-scene-${currentScene}`);
-        document.body.classList.remove('before-load');
         totalScroll = document.body.offsetHeight - sceneInfo[0].scrollHeight - document.querySelector('footer').offsetHeight;
+
+
+        if (YOffset > 0) {
+            let tempYOffset = YOffset;
+            let tempScrollCount = 0;
+            let siId = setInterval(() => {
+                window.scrollTo(0, tempYOffset);
+                tempYOffset += 5;
+
+                if (tempScrollCount > 20) {
+                    clearInterval(siId);
+                }
+                tempScrollCount++
+            }, 20);
+        }
     });
 
     loadingElem.addEventListener('transitionend', (e) => {
@@ -515,6 +530,14 @@
         viewWidth = window.innerWidth;
         setLayout();
     });
+
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            setInfoValues();
+            setLayout();
+        }, 200);
+
+    })
     setLayout();
 
     // Home button event
