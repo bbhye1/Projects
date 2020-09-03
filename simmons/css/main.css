@@ -21,7 +21,7 @@ body.before-load {
 }
 
 body::-webkit-scrollbar {
-    /* display: none; */
+    display: none;
 }
 
 
@@ -355,6 +355,7 @@ p.title {
     color: #000;
     top: 40%;
     left: 10%;
+    opacity: 0;
 }
 
 .product-title-elem p {

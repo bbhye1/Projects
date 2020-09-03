@@ -6,13 +6,14 @@
     const loadingElem = document.querySelector('.loading');
 
 
-
     let YOffset = 0;
     let prevScrollHeight = 0;
     let currentScene = 0;
     let enterNewScene = false;
     let totalScroll;
     let viewWidth = window.innerWidth;
+    let moreElemState = false;
+    let footerState = false;
 
     let acc = 0.1;
     let delayedYOffset = 0;
@@ -381,10 +382,12 @@
                     objs.moreElem.classList.add('sticky-elem');
                     objs.moreElem.style.animation = `more-elem-ani 0.6s ease running`;
                     objs.moreElem.style.transform = `translateY(0)`;
-                } else {
+                    moreElemState = true;
+                } else if (moreElemState && scrollRatio < 0.85) {
                     objs.moreElem.classList.add('sticky-elem');
                     objs.moreElem.style.animation = 'more-elem-reverse-ani 0.6s ease running';
                     objs.moreElem.style.transform = `translateY(100%)`;
+                    moreElemState = false;
                 }
 
 
@@ -392,11 +395,12 @@
                     objs.footer.classList.add('on');
                     objs.footer.style.animation = `more-elem-ani 0.6s ease running`;
                     objs.footer.style.transform = 'translateY(0)';
-                } else {
+                    footerState = true;
+                } else if (footerState) {
                     objs.footer.classList.add('on');
                     objs.footer.style.animation = 'more-elem-reverse-ani 0.6s ease running';
                     objs.footer.style.transform = 'translateY(30vh)';
-
+                    footerState = false;
                 }
 
                 break;
