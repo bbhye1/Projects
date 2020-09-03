@@ -9,10 +9,11 @@
     let currentScene = 0;
     let enterNewScene = false;
     let totalScroll;
+    let viewWidth = window.innerWidth;
 
     let acc = 0.1;
     let delayedYOffset = 0;
-    let rafId;
+    let rafID;
     let rafState;
 
     const sceneInfo = [{
@@ -176,10 +177,21 @@
             sceneInfo[1].objs.canvas.style.transform = `translateX(-50%) scale(${widthRatio})`;
 
         }
-        sceneInfo[2].objs.canvas1.style.transform = `scale(${heightRatio})`;
-        sceneInfo[2].values.videoScaleOut[0] = heightRatio;
-        sceneInfo[2].objs.canvas2.style.transform = ` translateX(-150%) scale(${heightRatio*0.85})`;
-        sceneInfo[2].values.imageScale = heightRatio * 0.85;
+
+        if (viewWidth < 900) {
+            sceneInfo[2].objs.canvas2.style.transform = ` translateX(-150%) scale(${heightRatio})`;
+            sceneInfo[2].values.imageScale = heightRatio;
+            sceneInfo[2].values.videoSequence[2].end = 0.75;
+
+        } else {
+            sceneInfo[2].values.videoScaleOut[0] = heightRatio;
+            sceneInfo[2].values.videoScaleOut[1] = sceneInfo[2].values.videoScaleOut[0] * 0.85;
+
+            sceneInfo[2].objs.canvas2.style.transform = ` translateX(-150%) scale(${heightRatio*0.85})`;
+            sceneInfo[2].values.imageScale = heightRatio * 0.85;
+        }
+
+
 
         sceneInfo[3].values.drawImage2[0] = sceneInfo[3].objs.canvas.offsetHeight;
         sceneInfo[3].values.drawImage3[0] = sceneInfo[3].objs.canvas.offsetHeight;
@@ -234,20 +246,21 @@
         const scrollRatio = currentYOffset / sceneInfo[currentScene].scrollHeight;
 
 
+
         switch (currentScene) {
             case 0:
                 objs.videoContainer.style.transform = `translateX(-50%) scale(${calcValues(values.videoScale, currentYOffset)})`
-
-                objs.titleBlack.style.top = `${calcValues(values.titleTop, currentYOffset)}%`
-                objs.titleWhite.style.top = `${calcValues(values.titleTop, currentYOffset)}%`
                 objs.titleWhite.style.height = `${calcValues(values.titleHeight, currentYOffset)}px`
+
+                if (viewWidth > 900) {
+                    objs.titleBlack.style.top = `${calcValues(values.titleTop, currentYOffset)}%`
+                    objs.titleWhite.style.top = `${calcValues(values.titleTop, currentYOffset)}%`
+                }
+
 
                 break;
             case 1:
                 if (enterNewScene) return;
-                // const sequenceIndex = Math.round(calcValues(values.videoSequence, currentYOffset));
-                // objs.context.drawImage(objs.videoImages[sequenceIndex], 0, 0);
-
                 if (scrollRatio < 0.5) {
                     objs.canvas.style.opacity = calcValues(values.videoOpacityIn, currentYOffset);
 
@@ -282,13 +295,13 @@
                 break;
             case 2:
                 if (enterNewScene) return;
-                // const sequenceIndex2 = Math.round(calcValues(values.videoSequence, currentYOffset));
-                // objs.context1.drawImage(objs.videoImages1[sequenceIndex2], 0, 0);
-                values.videoScaleOut[1] = values.videoScaleOut[0] * 0.85;
-                objs.canvas1.style.transform = `scale(${calcValues(values.videoScaleOut, currentYOffset)})`;
+                if (viewWidth > 900) {
+                    objs.canvas1.style.transform = `scale(${calcValues(values.videoScaleOut, currentYOffset)})`;
+                } else {
+                    objs.canvas1.style.transform = `translateX(-50%) scale(${window.innerWidth / 570})`;
+                }
 
                 objs.context2.drawImage(objs.canvas2Image[0], 0, 0);
-                // objs.canvas2.style.transform = `translateX(${Math.round(calcValues(values.imageTranslateX,currentYOffset))}%) scale(${values.imageScale})`;
 
                 if (scrollRatio <= 0.3) {
                     objs.title.style.opacity = calcValues(values.titleOpactiytIn, currentYOffset);
@@ -489,6 +502,7 @@
         totalScroll = document.body.offsetHeight - sceneInfo[0].scrollHeight - document.querySelector('footer').offsetHeight;
     });
     window.addEventListener('resize', () => {
+        viewWidth = window.innerWidth;
         setLayout();
     });
     setLayout();

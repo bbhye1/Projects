@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 :root {
     --title-font: 'DM Serif Display', serif;
     --main-font: 'Montserrat', sans-serif;
@@ -272,13 +273,16 @@ p.title {
 }
 
 .main-elem {
-    top: 45%;
+    top: 47%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: 4.5vw;
+    font-size: 4.3vw;
+    letter-spacing: -1.2px;
+    line-height: 1.7;
     font-weight: bold;
     opacity: 0;
+    font-family: 'Noto Serif KR', serif;
 }
 
 .sticky-elem {
@@ -339,16 +343,51 @@ p.title {
 }
 
 .product-title-elem p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2rem;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.4rem;
     margin-top: 0.2rem;
+    padding: 0 1em;
+    text-align: right;
 }
 
 .product-elem {
-    font-size: 1.7rem;
+    font-size: 3rem;
     font-family: var(--title-font);
     top: 40%;
     left: 20%;
+    text-align: center;
+    color: #fff;
+}
+
+.product-elem p:last-child {
+    border-top: 2px #fff solid;
+}
+
+.product-elem.a {
+    top: 45%;
+    left: 10%;
+}
+
+.product-elem.b {
+    top: 45%;
+    left: 20%;
+}
+
+.product-elem.c {
+    top: 55%;
+    left: 45%;
+    color: #000;
+}
+
+.product-elem.d {
+    top: 45%;
+    left: 20%;
+    color: #000;
+}
+
+.product-elem.c p:last-child,
+.product-elem.d p:last-child {
+    border-top: 2px #000 solid;
 }
 
 .more-elem {
@@ -359,7 +398,6 @@ p.title {
     justify-content: center;
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(100%);
-    top: 50px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -386,29 +424,29 @@ p.title {
 }
 
 .more-elem .home {
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
     font-size: 1.3rem;
     cursor: pointer;
 }
 
 .more {
     position: relative;
-    width: 80%;
+    width: 75%;
     height: 60%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    transform: translateX(-50%);
-    overflow: hidden;
+    align-content: top;
 }
 
 .more-item img {
-    height: 100%;
+    width: 100%;
+    transform: translateY(-50%);
 }
 
 .more-item {
-    height: 100%;
-    width: auto;
+    margin-top: 1em;
+    width: 100%;
     overflow: hidden;
     cursor: pointer;
 }
@@ -418,9 +456,8 @@ p.title {
     transform: scale(1.1);
 }
 
-.more-item:active {
+.more-item:active img {
     transform-origin: center;
-    transform: scale(0.98);
 }
 
 footer {
@@ -429,8 +466,8 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 30vh;
-    transform: translateY(30vh);
+    height: 15vh;
+    transform: translateY(15vh);
     background: #222;
     color: #fff;
     z-index: 30;
@@ -447,93 +484,6 @@ footer.on {
 #show-scene-3 #scroll-section-3 .sticky-elem,
 #show-scene-4 #scroll-section-4 .sticky-elem {
     display: block;
-}
-
-@media(min-width:900px) {
-    .main-nav ul {
-        padding: 0 3em;
-    }
-    .title {
-        font-size: 10vw;
-    }
-    p.title {
-        top: 30%;
-    }
-    .main-elem {
-        top: 60%;
-        font-size: 3vw;
-    }
-    #scroll-section-2 h2 {
-        font-size: 4vw;
-        margin: 0 16vw;
-        top: 30vh;
-        margin-top: 0;
-    }
-    .pocket-spring-elem {
-        width: 27%;
-        margin: 0 16vw;
-        top: 35vh;
-        font-size: 1.2rem;
-    }
-    .pin {
-        margin: 6rem 0;
-    }
-    #scroll-section-3 h2 {
-        font-size: 5rem;
-        margin-bottom: 1em;
-    }
-    .product-title-elem {
-        padding: 0 5vw;
-        left: 45%;
-    }
-    .product-title-elem p {
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-        font-size: 1.8rem;
-        line-height: 1.5;
-    }
-    .product-elem {
-        font-size: 5rem;
-        line-height: 1.5;
-        font-family: var(--title-font);
-        top: 40%;
-        left: 20%;
-        text-align: center;
-        color: #fff;
-    }
-    .product-elem p:last-child {
-        border-top: 2px #fff solid;
-    }
-    .product-elem.a {
-        top: 37%;
-        left: 30%;
-    }
-    .product-elem.b {
-        top: 45%;
-        left: 20%;
-    }
-    .product-elem.c {
-        top: 45%;
-        left: 15%;
-    }
-    .product-elem.d {
-        top: 45%;
-        left: 63%;
-        color: #000;
-    }
-    .product-elem.d p:last-child {
-        border-top: 2px #000 solid;
-    }
-    .more {
-        width: 75%;
-        height: 70%;
-    }
-    .more-elem .home {
-        margin-bottom: 10rem;
-    }
-    .more {
-        transform: translateX(0);
-    }
 }
 
 .video-wrap {
@@ -586,4 +536,124 @@ footer.on {
 
 #scroll-canvas-3 {
     opacity: 1;
+}
+
+@media(min-width:900px) {
+    .main-nav ul {
+        padding: 0 3em;
+    }
+    .title {
+        font-size: 10vw;
+    }
+    p.title {
+        top: 30%;
+    }
+    .main-elem {
+        top: 60%;
+        font-size: 3vw;
+    }
+    #scroll-section-2 h2 {
+        font-size: 4vw;
+        margin: 0 16vw;
+        top: 30vh;
+        margin-top: 0;
+    }
+    .pocket-spring-elem {
+        width: 27%;
+        margin: 0 16vw;
+        top: 35vh;
+        font-size: 1.2rem;
+    }
+    .pin {
+        margin: 6rem 0;
+    }
+    #scroll-section-3 h2 {
+        font-size: 5rem;
+        margin-bottom: 1em;
+    }
+    .product-title-elem {
+        padding: 0 5vw;
+        left: 45%;
+    }
+    .product-title-elem p {
+        font-family: 'Noto Serif KR', serif;
+        font-weight: bold;
+        padding: 0 2em;
+        text-align: right;
+        font-size: 2.2rem;
+        line-height: 1.5;
+    }
+    .product-elem {
+        font-size: 5rem;
+        line-height: 1.5;
+        font-family: var(--title-font);
+        top: 40%;
+        left: 20%;
+        text-align: center;
+        color: #fff;
+    }
+    .product-elem p:last-child {
+        border-top: 2px #fff solid;
+    }
+    .product-elem.a {
+        top: 37%;
+        left: 30%;
+    }
+    .product-elem.b {
+        top: 45%;
+        left: 20%;
+    }
+    .product-elem.c {
+        top: 45%;
+        left: 15%;
+    }
+    .product-elem.d {
+        top: 45%;
+        left: 63%;
+        color: #000;
+    }
+    .product-elem.d p:last-child {
+        border-top: 2px #000 solid;
+    }
+    .more-elem {
+        top: 50px;
+    }
+    .more {
+        width: 75%;
+        height: 60%;
+    }
+    .more-elem .home {
+        margin-bottom: 10rem;
+    }
+    .more {
+        position: relative;
+        width: 75%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .more-item img {
+        transform: translateY(0);
+        height: 100%;
+    }
+    .more-item {
+        margin-top: 0;
+        margin: 0 1em;
+        height: 100%;
+        cursor: pointer;
+    }
+    .more-item:active {
+        transform-origin: center;
+        transform: scale(0.98);
+    }
+    #scroll-canvas-2-1 {
+        top: none;
+        left: 50%;
+        transform: translateX(0);
+        color: #000;
+    }
+    footer {
+        height: 30vh;
+        transform: translateY(30vh);
+    }
 }
