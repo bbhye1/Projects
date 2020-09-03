@@ -10,7 +10,12 @@
     <title>SIMMONS 2020</title>
 </head>
 
-<body id="show-scene-0">
+<body id="show-scene-0" class="before-load">
+    <div class="loading">
+        <svg class="loading-circle">
+                <circle cx=50% cy=50% r=25></circle>
+        </svg>
+    </div>
     <div class="container">
         <nav class="main-nav" id="main-nav">
             <ul>
@@ -43,8 +48,8 @@
                 <li class="cutomer-item">CONTACT US</li>
             </ul>
             <div class="search">
-                <input type="text">
-                <button type="submit"><img src="./images/lnb_search.png" alt=""></button>
+                <input type="text" class="search-text">
+                <button type="submit" class="search-btn"><img src="./images/lnb_search.png" alt=""></button>
             </div>
             <div class="sns">
                 <img src="./images/lnb_sns01.jpg" alt="" class="sns-icon">
@@ -60,7 +65,7 @@
         <nav class="side-nav right-nav">
             <button class="close-btn" id="cart-close-btn"><img src="./images/lnb_close.png" alt=""></button>
             <div class="top-title">
-                <p class="select-cart">CART (0)</p>
+                <p class="select-cart on">CART (0)</p>
                 <p class="select-recent">RECENT (0)</p>
             </div>
             <div class="selected-content">

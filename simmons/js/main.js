@@ -3,6 +3,9 @@
     const leftNav = document.querySelector('.left-nav');
     const rightNav = document.querySelector('.right-nav');
     const moreElem = document.querySelector('.more-elem');
+    const loadingElem = document.querySelector('.loading');
+
+
 
     let YOffset = 0;
     let prevScrollHeight = 0;
@@ -159,7 +162,6 @@
     }, ]
 
     function setLayout() {
-        let totalScroll = 0;
         for (let i = 0; i < sceneInfo.length; i++) {
             sceneInfo[i].scrollHeight = window.innerHeight * sceneInfo[i].heightNum;
             sceneInfo[i].objs.scene.style.height = `${sceneInfo[i].scrollHeight}px`;
@@ -499,8 +501,16 @@
     window.addEventListener('load', () => {
         setInfoValues();
         drawCanvasImages();
+
+        // document.body.setAttribute('id', `show-scene-${currentScene}`);
+        document.body.classList.remove('before-load');
         totalScroll = document.body.offsetHeight - sceneInfo[0].scrollHeight - document.querySelector('footer').offsetHeight;
     });
+
+    loadingElem.addEventListener('transitionend', (e) => {
+        document.body.removeChild(e.currentTarget);
+    })
+
     window.addEventListener('resize', () => {
         viewWidth = window.innerWidth;
         setLayout();
@@ -530,6 +540,10 @@
             rightNav.style.right = 0;
             leftNav.style.left = '-250px';
         }
+        if (parentNodeClass === 'main-logo') {
+            window.scrollTo(0, 0);
+            window.location.reload();
+        }
     });
 
     leftNav.addEventListener('click', e => {
@@ -537,11 +551,25 @@
         if (parentNodeClass === 'close-btn') {
             leftNav.style.left = '-250px';
         }
+        if (parentNodeClass === 'search-btn' || e.target.className === 'search-btn') {
+            document.querySelector('.search-text').value = '';
+        }
+
     });
     rightNav.addEventListener('click', e => {
         const parentNodeClass = e.target.parentNode.className;
         if (parentNodeClass === 'close-btn') {
             rightNav.style.right = '-250px';
+        }
+
+        if (e.target.className === "select-cart") {
+            document.querySelector('.select-cart').classList.add('on');
+            document.querySelector('.select-recent').classList.remove('on');
+            document.querySelector('.selected-content').innerHTML = `<p>Your basket is empty.</p>`
+        } else if (e.target.className === "select-recent") {
+            document.querySelector('.select-recent').classList.add('on');
+            document.querySelector('.select-cart').classList.remove('on');
+            document.querySelector('.selected-content').innerHTML = `<p>Your recent item basket is empty.</p>`
         }
     });
 
