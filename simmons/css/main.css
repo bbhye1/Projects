@@ -12,6 +12,11 @@ html {
 body {
     background: #fff;
     overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    /* display: none; */
 }
 
 
@@ -352,7 +357,7 @@ p.title {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     transform: translateY(100%);
     top: 50px;
     left: 0;
@@ -394,26 +399,31 @@ p.title {
     flex-direction: row;
     justify-content: space-between;
     transform: translateX(-50%);
+    overflow: hidden;
 }
 
-.more img {
+.more-item img {
     height: 100%;
-    margin: 0 2px;
+}
+
+.more-item {
+    height: 100%;
+    width: auto;
+    overflow: hidden;
     cursor: pointer;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-.more img:hover {
-    box-shadow: 10px 20px 30 px rgba(255, 255, 255, 0.5);
-    transform: translateY(-20px);
+.more-item:hover img {
+    transform-origin: center;
+    transform: scale(1.1);
 }
 
-.more img:active {
-    transform: translateY(20px);
+.more-item:active {
+    transform-origin: center;
+    transform: scale(0.98);
 }
 
 footer {
-    position: fixed;
     bottom: 0;
     display: flex;
     align-items: center;
@@ -423,6 +433,12 @@ footer {
     transform: translateY(30vh);
     background: #222;
     color: #fff;
+    z-index: 30;
+    animation-play-state: paused;
+}
+
+footer.on {
+    position: fixed;
 }
 
 #show-scene-0 #scroll-section-0 .sticky-elem,

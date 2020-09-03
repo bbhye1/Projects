@@ -2,12 +2,13 @@
     const mainNav = document.querySelector('#main-nav')
     const leftNav = document.querySelector('.left-nav');
     const rightNav = document.querySelector('.right-nav');
+    const moreElem = document.querySelector('.more-elem');
+
     let YOffset = 0;
     let prevScrollHeight = 0;
     let currentScene = 0;
     let enterNewScene = false;
-
-
+    let totalScroll;
 
     const sceneInfo = [{
         heightNum: 1,
@@ -111,6 +112,8 @@
             messageD: document.querySelector('.product-elem.d'),
             canvasImages: [],
 
+            moreElem: document.querySelector('.more-elem'),
+            footer: document.querySelector('footer'),
         },
         values: {
             imageCount: 4,
@@ -141,19 +144,20 @@
 
         }
     }, {
-        heightNum: 0,
+        heightNum: 0.1,
         scrollHeight: 0,
         objs: {
-            scene: document.querySelector('#scroll-section-4'),
-            moreElem: document.querySelector('.more-elem'),
+            scene: document.querySelector('#scroll-section-4')
         },
         values: {}
     }, ]
 
     function setLayout() {
+        let totalScroll = 0;
         for (let i = 0; i < sceneInfo.length; i++) {
             sceneInfo[i].scrollHeight = window.innerHeight * sceneInfo[i].heightNum;
             sceneInfo[i].objs.scene.style.height = `${sceneInfo[i].scrollHeight}px`;
+            totalScroll += sceneInfo[i].scrollHeight;
         }
 
         YOffset = window.pageYOffset;
@@ -175,10 +179,6 @@
         sceneInfo[3].values.drawImage2[0] = sceneInfo[3].objs.canvas.offsetHeight;
         sceneInfo[3].values.drawImage3[0] = sceneInfo[3].objs.canvas.offsetHeight;
         sceneInfo[3].values.drawImage4[0] = sceneInfo[3].objs.canvas.offsetHeight;
-
-
-
-
     }
 
     function setInfoValues() {
@@ -202,6 +202,7 @@
             prevScrollHeight += sceneInfo[i].scrollHeight;
         }
 
+
         if (prevScrollHeight + sceneInfo[currentScene].scrollHeight < YOffset) {
             enterNewScene = true;
 
@@ -220,11 +221,13 @@
         playAnimation();
     }
 
+
     function playAnimation() {
         const objs = sceneInfo[currentScene].objs;
         const values = sceneInfo[currentScene].values;
         const currentYOffset = YOffset - prevScrollHeight;
         const scrollRatio = currentYOffset / sceneInfo[currentScene].scrollHeight;
+
 
         switch (currentScene) {
             case 0:
@@ -307,7 +310,7 @@
                 objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio})`
                 objs.context.drawImage(objs.canvasImages[0], 0, 0);
 
-                objs.canvas.style.top = `${heightRatio*calcValues(values.drawImageTopIn,currentYOffset)}%`
+                objs.canvas.style.top = `${calcValues(values.drawImageTopIn,currentYOffset)}%`
 
                 if (scrollRatio >= 0.3) {
                     objs.context.drawImage(
@@ -353,24 +356,32 @@
                     objs.messageD.style.opacity = calcValues(values.messageDOpacityOut, currentYOffset);
                 }
 
-                if (scrollRatio > 0.85) {
-                    sceneInfo[4].objs.moreElem.classList.add('sticky-elem');
-                    sceneInfo[4].objs.moreElem.style.animation = `more-elem-ani 0.6s ease`;
-                    sceneInfo[4].objs.moreElem.style.transform = `translateY(0)`;
-                    sceneInfo[4].objs.moreElem.style.animationPlayState = 'running';
-                    return;
-                } else {
-                    sceneInfo[4].objs.moreElem.classList.add('sticky-elem');
-                    sceneInfo[4].objs.moreElem.style.animation = 'more-elem-reverse-ani 0.6s ease';
-                    sceneInfo[4].objs.moreElem.style.transform = `translateY(100%)`;
-                    sceneInfo[4].objs.moreElem.style.animationPlayState = 'running';
-                    return;
-                }
-                break;
 
+                if (scrollRatio > 0.85) {
+                    objs.moreElem.classList.add('sticky-elem');
+                    objs.moreElem.style.animation = `more-elem-ani 0.6s ease running`;
+                    objs.moreElem.style.transform = `translateY(0)`;
+                } else {
+                    objs.moreElem.classList.add('sticky-elem');
+                    objs.moreElem.style.animation = 'more-elem-reverse-ani 0.6s ease running';
+                    objs.moreElem.style.transform = `translateY(100%)`;
+                }
+
+
+                if (YOffset === Math.round(totalScroll)) {
+                    objs.footer.classList.add('on');
+                    objs.footer.style.animation = `more-elem-ani 0.6s ease running`;
+                    objs.footer.style.transform = 'translateY(0)';
+                } else {
+                    objs.footer.classList.add('on');
+                    objs.footer.style.animation = 'more-elem-reverse-ani 0.6s ease running';
+                    objs.footer.style.transform = 'translateY(30vh)';
+
+                }
+
+                break;
         }
     }
-
 
     function drawCanvasImages() {
         for (let i = 0; i < sceneInfo[1].values.videoFrame; i++) {
@@ -395,8 +406,6 @@
         canvasImage.src = '../images/img-bed.jpg'
         sceneInfo[2].objs.canvas2Image.push(canvasImage);
     }
-
-
 
     function calcValues(values, currentYOffset) {
         let rv;
@@ -427,11 +436,14 @@
 
         scrollLoop();
         playAnimation();
+        console.log(totalScroll, YOffset);
     });
 
     window.addEventListener('load', () => {
         setLayout();
         drawCanvasImages();
+        totalScroll = document.body.offsetHeight - sceneInfo[0].scrollHeight - document.querySelector('footer').offsetHeight;
+
 
     });
     window.addEventListener('resize', () => {
@@ -440,6 +452,17 @@
     });
     setLayout();
     setInfoValues();
+
+    moreElem.addEventListener('click', (e) => {
+        const footer = document.querySelector('footer');
+
+        if (e.target.parentNode.classList.contains('home')) {
+            moreElem.style.animation = 'more-elem-reverse-ani 0.6s ease running';
+            moreElem.style.transform = `translateY(100%)`;
+            footer.style.animation = 'more-elem-reverse-ani 0.6s ease running';
+            footer.style.transform = 'translateY(30vh)';
+        }
+    })
 
     // Side navigetion display
     mainNav.addEventListener('click', (e) => {
