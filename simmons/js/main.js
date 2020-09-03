@@ -10,6 +10,11 @@
     let enterNewScene = false;
     let totalScroll;
 
+    let acc = 0.1;
+    let delayedYOffset = 0;
+    let rafId;
+    let rafState;
+
     const sceneInfo = [{
         heightNum: 1,
         scrollHeight: 0,
@@ -240,8 +245,8 @@
                 break;
             case 1:
                 if (enterNewScene) return;
-                const sequenceIndex = Math.round(calcValues(values.videoSequence, currentYOffset));
-                objs.context.drawImage(objs.videoImages[sequenceIndex], 0, 0);
+                // const sequenceIndex = Math.round(calcValues(values.videoSequence, currentYOffset));
+                // objs.context.drawImage(objs.videoImages[sequenceIndex], 0, 0);
 
                 if (scrollRatio < 0.5) {
                     objs.canvas.style.opacity = calcValues(values.videoOpacityIn, currentYOffset);
@@ -277,13 +282,13 @@
                 break;
             case 2:
                 if (enterNewScene) return;
-                const sequenceIndex2 = Math.round(calcValues(values.videoSequence, currentYOffset));
+                // const sequenceIndex2 = Math.round(calcValues(values.videoSequence, currentYOffset));
+                // objs.context1.drawImage(objs.videoImages1[sequenceIndex2], 0, 0);
                 values.videoScaleOut[1] = values.videoScaleOut[0] * 0.85;
-                objs.context1.drawImage(objs.videoImages1[sequenceIndex2], 0, 0);
                 objs.canvas1.style.transform = `scale(${calcValues(values.videoScaleOut, currentYOffset)})`;
 
                 objs.context2.drawImage(objs.canvas2Image[0], 0, 0);
-                objs.canvas2.style.transform = `translateX(${Math.round(calcValues(values.imageTranslateX,currentYOffset))}%) scale(${values.imageScale})`;
+                // objs.canvas2.style.transform = `translateX(${Math.round(calcValues(values.imageTranslateX,currentYOffset))}%) scale(${values.imageScale})`;
 
                 if (scrollRatio <= 0.3) {
                     objs.title.style.opacity = calcValues(values.titleOpactiytIn, currentYOffset);
@@ -307,7 +312,7 @@
                 if (enterNewScene) return;
                 const heightRatio = window.innerHeight / 1000;
                 objs.prevCanvas.style.opacity = calcValues(values.prevCanvasOpacity, currentYOffset);
-                objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio})`
+                objs.canvas.style.transform = `translateX(-50%) scale(${heightRatio})`;
                 objs.context.drawImage(objs.canvasImages[0], 0, 0);
 
                 objs.canvas.style.top = `${calcValues(values.drawImageTopIn,currentYOffset)}%`
@@ -429,30 +434,66 @@
         return rv
     }
 
+    function loop() {
+        delayedYOffset = delayedYOffset + (YOffset - delayedYOffset) * acc;
+
+        if (!enterNewScene) {
+            const objs = sceneInfo[currentScene].objs;
+            const values = sceneInfo[currentScene].values;
+            const currentYOffset = delayedYOffset - prevScrollHeight;
+
+            if (currentScene === 1) {
+                const sequenceIndex = Math.round(calcValues(values.videoSequence, currentYOffset));
+
+                if (objs.videoImages[sequenceIndex]) {
+                    objs.context.drawImage(objs.videoImages[sequenceIndex], 0, 0);
+                }
+            } else if (currentScene === 2) {
+                const sequenceIndex = Math.round(calcValues(values.videoSequence, currentYOffset));
+
+                if (objs.videoImages1[sequenceIndex]) {
+                    objs.context1.drawImage(objs.videoImages1[sequenceIndex], 0, 0);
+
+                    objs.canvas2.style.transform = `translateX(${Math.round(calcValues(values.imageTranslateX,currentYOffset))}%) scale(${values.imageScale})`;
+                }
+            }
+
+
+
+        }
+
+        rafID = requestAnimationFrame(loop);
+
+        if (Math.abs(YOffset - delayedYOffset) < 1) {
+            cancelAnimationFrame(rafID);
+            rafState = false;
+        }
+
+    }
+
 
     // EventListeners
     window.addEventListener('scroll', () => {
         YOffset = window.pageYOffset;
-
         scrollLoop();
-        playAnimation();
-        console.log(totalScroll, YOffset);
+
+        if (!rafState) {
+            rafID = requestAnimationFrame(loop);
+            rafState = true;
+        }
     });
 
     window.addEventListener('load', () => {
-        setLayout();
+        setInfoValues();
         drawCanvasImages();
         totalScroll = document.body.offsetHeight - sceneInfo[0].scrollHeight - document.querySelector('footer').offsetHeight;
-
-
     });
     window.addEventListener('resize', () => {
         setLayout();
-
     });
     setLayout();
-    setInfoValues();
 
+    // Home button event
     moreElem.addEventListener('click', (e) => {
         const footer = document.querySelector('footer');
 
